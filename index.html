@@ -97,7 +97,7 @@ button:hover{
 /* INTRO */
 
 .intro-heart{
-    font-size:65px;
+    font-size:40px;
     animation:heartBeat 1.3s infinite;
 }
 
@@ -112,7 +112,11 @@ button:hover{
     font-size:22px;
     margin:18px 0 25px;
 }
-
+#home button{
+    padding:9px 17px;
+    font-size:18px;
+    border-radius:35px;
+} 
 /* PASSWORD */
 
 .lock{
@@ -717,14 +721,43 @@ onclick="playSong()">
 Touch the gift to play our song. ❤️
 </p>
 
-<button onclick="go('story')">
+<button onclick="go('storyPassword')">
 Continue To Our Story 📖
 </button>
 
 </div>
 </div>
 </section>
+<!-- 6.5 STORY PASSWORD -->
 
+<section id="storyPassword">
+  <div class="container">
+    <div class="card">
+
+      <div class="lock">🔐💜</div>
+
+      <div class="small">Only For You</div>
+
+      <h1>Our Secret Story 💌</h1>
+
+      <p>Enter our secret date to continue ❤️</p>
+
+      <input
+        id="storyPass"
+        type="password"
+        inputmode="numeric"
+        maxlength="8"
+        placeholder="DDMMYYYY">
+
+      <div id="storyError" class="error"></div>
+
+      <button onclick="checkStoryPassword()">
+        Unlock Our Story ❤️
+      </button>
+
+    </div>
+  </div>
+</section>
 
 <!-- 7. STORY / SCRATCH -->
 
@@ -844,10 +877,10 @@ function checkPassword(){
     /*
       IMPORTANT:
       Inga un correct date podanum.
-      Example: 25082025
+      Example: 28082025
     */
 
-    const correctPassword = "25082025";
+    const correctPassword = "28082025";
 
     if(value === correctPassword){
 
@@ -871,7 +904,34 @@ function checkPassword(){
     }
 }
 
+function checkStoryPassword(){
 
+  const value =
+    document.getElementById("storyPass").value.trim();
+
+  const correctStoryPassword = "29072025";
+
+  if(value === correctStoryPassword){
+
+    document.getElementById("storyError")
+      .textContent = "";
+
+    go("story");
+
+  }else{
+
+    document.getElementById("storyError")
+      .textContent = "😌 Wrong date! Try again ❤️";
+
+    document.getElementById("storyPass").animate([
+      {transform:"translateX(-10px)"},
+      {transform:"translateX(10px)"},
+      {transform:"translateX(-10px)"},
+      {transform:"translateX(0)"}
+    ],400);
+
+  }
+}
 /* LETTER */
 
 function openLetter(){
