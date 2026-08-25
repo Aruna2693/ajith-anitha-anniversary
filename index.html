@@ -51,6 +51,10 @@ body:after{
     pointer-events:none;
 }
 
+/* =========================
+   SECTIONS
+========================= */
+
 section{
     min-height:100vh;
     padding:30px 15px;
@@ -58,6 +62,32 @@ section{
     align-items:center;
     justify-content:center;
     position:relative;
+}
+
+/* IMPORTANT:
+   All sections except HOME are hidden
+   until the previous button unlocks them.
+*/
+
+.locked-section{
+    display:none !important;
+}
+
+.section-unlocked{
+    display:flex !important;
+    animation:sectionReveal 1s ease forwards;
+}
+
+@keyframes sectionReveal{
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 .container{
@@ -168,7 +198,9 @@ button:hover{
     color:#ff9fcf;
 }
 
-/* HOME */
+/* =========================
+   HOME
+========================= */
 
 .intro-heart{
     font-size:18px;
@@ -205,7 +237,9 @@ button:hover{
     font-size:16px;
 }
 
-/* COVER */
+/* =========================
+   COVER
+========================= */
 
 .cover{
     width:260px;
@@ -261,7 +295,9 @@ button:hover{
     color:#ffe3fa;
 }
 
-/* GREETING */
+/* =========================
+   GREETING
+========================= */
 
 .greeting{
     opacity:0;
@@ -327,7 +363,9 @@ button:hover{
     }
 }
 
-/* SMOKE */
+/* =========================
+   SMOKE
+========================= */
 
 .smoke{
     font-size:26px;
@@ -347,7 +385,9 @@ button:hover{
     }
 }
 
-/* PHOTO SMOKE EFFECT */
+/* =========================
+   PHOTO SMOKE
+========================= */
 
 .photo-stage{
     position:relative;
@@ -376,7 +416,9 @@ button:hover{
     animation:smokeRise 1.5s ease-out forwards;
 }
 
-.photo-smoke span:nth-child(1){left:10%;}
+.photo-smoke span:nth-child(1){
+    left:10%;
+}
 
 .photo-smoke span:nth-child(2){
     left:25%;
@@ -422,7 +464,9 @@ button:hover{
     animation-name:smokeRise;
 }
 
-/* BUTTERFLIES */
+/* =========================
+   BUTTERFLIES
+========================= */
 
 .butterflies{
     font-size:25px;
@@ -436,7 +480,9 @@ button:hover{
     }
 }
 
-/* HEARTS */
+/* =========================
+   HEARTS
+========================= */
 
 .floating-hearts{
     font-size:18px;
@@ -450,7 +496,9 @@ button:hover{
     }
 }
 
-/* POEM */
+/* =========================
+   POEM
+========================= */
 
 .poem{
     text-align:left;
@@ -481,11 +529,9 @@ button:hover{
     font-size:19px;
 }
 
-/* MEMORIES */
-
-.memories-hidden{
-    display:none;
-}
+/* =========================
+   MEMORIES
+========================= */
 
 .memory-reveal{
     margin:25px 0 10px;
@@ -578,7 +624,9 @@ button:hover{
     }
 }
 
-/* SONG */
+/* =========================
+   SONG
+========================= */
 
 .gift{
     width:120px;
@@ -629,8 +677,6 @@ button:hover{
     z-index:3;
 }
 
-/* MUSIC PLAYER HIDDEN */
-
 .song-player{
     display:none;
     opacity:0;
@@ -659,7 +705,9 @@ audio{
     margin:15px 0;
 }
 
-/* STORY */
+/* =========================
+   STORY
+========================= */
 
 .story-img{
     width:100%;
@@ -708,7 +756,9 @@ audio{
     pointer-events:none;
 }
 
-/* FINAL */
+/* =========================
+   FINAL
+========================= */
 
 .final-heart{
     font-size:38px;
@@ -738,7 +788,9 @@ audio{
     font-size:19px;
 }
 
-/* FLOATING */
+/* =========================
+   FLOATING
+========================= */
 
 .float{
     position:fixed;
@@ -773,6 +825,10 @@ audio{
         opacity:0;
     }
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:500px){
 
@@ -826,84 +882,93 @@ audio{
 
 <div class="container">
 
-<!-- HOME LOCK -->
-<div class="card" id="homeLock">
+    <!-- FIRST LOCK -->
+    <div class="card" id="homeLock">
 
-    <div class="home-lock-icon">
-        🔐💜
+        <div class="home-lock-icon">
+            🔐💜
+        </div>
+
+        <div class="small">
+            A Little Secret
+        </div>
+
+        <h1>
+            This Is For You 💜
+        </h1>
+
+        <p class="home-lock-text">
+            8 digit secret number enter pannunga... ❤️<br>
+            Only for my Thangapulla 🥹💜
+        </p>
+
+        <div class="home-lock-box">
+
+            <input
+                type="password"
+                id="homePassword"
+                inputmode="numeric"
+                maxlength="8"
+                pattern="[0-9]*"
+                placeholder="8 Digit Number"
+                autocomplete="off"
+            >
+
+            <br><br>
+
+            <button onclick="checkHomePassword()">
+                Unlock 💜
+            </button>
+
+            <p id="homeLockError"></p>
+
+        </div>
+
     </div>
 
-    <div class="small">
-        A Little Secret
-    </div>
 
-    <h1>
-        This Is For You 💜
-    </h1>
+    <!-- HOME AFTER FIRST LOCK -->
+    <div
+        class="card"
+        id="homeContent"
+        style="display:none;"
+    >
 
-    <p class="home-lock-text">
-        8 digit secret number enter pannunga... ❤️<br>
-        Only for my Thangapulla 🥹💜
-    </p>
+        <div class="intro-heart">
+            💜♾️🤍
+        </div>
 
-    <div class="home-lock-box">
+        <div class="small">
+            A Little Surprise For You
+        </div>
 
-        <input
-            type="password"
-            id="homePassword"
-            inputmode="numeric"
-            maxlength="8"
-            pattern="[0-9]*"
-            placeholder="8 Digit Number"
-            autocomplete="off"
-        >
+        <h1>
+            This Is For You 💜
+        </h1>
 
-        <br><br>
+        <div class="intro-text">
+            Thangapulla ❤️
+        </div>
 
-        <button onclick="checkHomePassword()">
-            Unlock 💜
+        <button onclick="go('anniversary')">
+            Touch Here 💜
         </button>
 
-        <p id="homeLockError"></p>
-
     </div>
-
-</div>
-
-
-<!-- ORIGINAL HOME CONTENT -->
-<div class="card" id="homeContent" style="display:none;">
-
-    <div class="intro-heart">
-        💜♾️🤍
-    </div>
-
-    <div class="small">
-        A Little Surprise For You
-    </div>
-
-    <h1>
-        This Is For You 💜
-    </h1>
-
-    <div class="intro-text">
-        Thangapulla ❤️
-    </div>
-
-    <button onclick="go('anniversary')">
-        Touch Here 💜
-    </button>
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- 2 ANNIVERSARY -->
+<!-- =========================
+     2 ANNIVERSARY
+========================= -->
 
-<section id="anniversary">
+<section
+    id="anniversary"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -941,9 +1006,14 @@ audio{
 </section>
 
 
-<!-- 3 LETTER -->
+<!-- =========================
+     3 LETTER
+========================= -->
 
-<section id="letter">
+<section
+    id="letter"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -968,6 +1038,7 @@ audio{
     >
 
         <div class="cover-body"></div>
+
         <div class="cover-flap"></div>
 
         <div class="cover-heart">
@@ -977,7 +1048,10 @@ audio{
     </div>
 
 
-    <div class="greeting" id="greeting">
+    <div
+        class="greeting"
+        id="greeting"
+    >
 
         <div
             id="proposalScreen"
@@ -1061,9 +1135,14 @@ audio{
 </section>
 
 
-<!-- 4 MEMORIES -->
+<!-- =========================
+     4 MEMORIES
+========================= -->
 
-<section id="memories">
+<section
+    id="memories"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -1146,9 +1225,14 @@ audio{
 </section>
 
 
-<!-- 5 SONG -->
+<!-- =========================
+     5 SONG
+========================= -->
 
-<section id="song">
+<section
+    id="song"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -1168,7 +1252,9 @@ audio{
     >
 
         <div class="gift-body"></div>
+
         <div class="gift-lid"></div>
+
         <div class="ribbon-v"></div>
 
     </div>
@@ -1219,9 +1305,14 @@ audio{
 </section>
 
 
-<!-- 6 STORY PASSWORD -->
+<!-- =========================
+     6 STORY PASSWORD
+========================= -->
 
-<section id="storyPassword">
+<section
+    id="storyPassword"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -1270,9 +1361,14 @@ audio{
 </section>
 
 
-<!-- 7 STORY -->
+<!-- =========================
+     7 STORY
+========================= -->
 
-<section id="story">
+<section
+    id="story"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -1320,9 +1416,14 @@ audio{
 </section>
 
 
-<!-- 8 FINAL -->
+<!-- =========================
+     8 FINAL
+========================= -->
 
-<section id="final">
+<section
+    id="final"
+    class="locked-section"
+>
 
 <div class="container">
 
@@ -1390,7 +1491,8 @@ audio{
 <script>
 
 /* =========================
-   HOME LOCK
+   FIRST HOME LOCK
+   PASSWORD: 28082025
 ========================= */
 
 function checkHomePassword(){
@@ -1407,56 +1509,73 @@ function checkHomePassword(){
     const correctHomePassword =
         "28082025";
 
+
     if(value === correctHomePassword){
 
         error.textContent = "";
+
+
+        /* Hide FIRST LOCK */
 
         document
             .getElementById("homeLock")
             .style.display = "none";
 
-        document
-            .getElementById("homeContent")
-            .style.display = "block";
 
-        document
-            .getElementById("homeContent")
-            .animate(
-                [
-                    {
-                        opacity:0,
-                        transform:"scale(.8) translateY(25px)"
-                    },
-                    {
-                        opacity:1,
-                        transform:"scale(1) translateY(0)"
-                    }
-                ],
+        /* Show HOME */
+
+        const homeContent =
+            document.getElementById("homeContent");
+
+        homeContent.style.display = "block";
+
+
+        homeContent.animate(
+            [
                 {
-                    duration:900,
-                    easing:"ease-out",
-                    fill:"forwards"
+                    opacity:0,
+                    transform:
+                        "scale(.75) translateY(30px)"
+                },
+
+                {
+                    opacity:1,
+                    transform:
+                        "scale(1) translateY(0)"
                 }
-            );
+            ],
+            {
+                duration:1000,
+                easing:
+                    "cubic-bezier(.17,.89,.32,1.28)",
+                fill:"forwards"
+            }
+        );
+
 
         createLoveExplosion();
+
 
     }else{
 
         error.textContent =
             "🔐 Wrong number! Try again ❤️";
 
+
         input.animate(
             [
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(10px)"
                 },
+
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(0)"
                 }
@@ -1469,27 +1588,56 @@ function checkHomePassword(){
 }
 
 
-/* SCROLL */
+/* =========================
+   ONE BY ONE SECTION UNLOCK
+========================= */
 
 function go(id){
 
-    document
-        .getElementById(id)
-        .scrollIntoView({
+    const section =
+        document.getElementById(id);
+
+
+    if(!section){
+        return;
+    }
+
+
+    /* Unlock ONLY the requested next section */
+
+    section.classList.remove(
+        "locked-section"
+    );
+
+    section.classList.add(
+        "section-unlocked"
+    );
+
+
+    /* Scroll after unlock */
+
+    setTimeout(()=>{
+
+        section.scrollIntoView({
             behavior:"smooth",
             block:"start"
         });
 
+    },100);
+
 }
 
 
-/* LETTER */
+/* =========================
+   LETTER
+========================= */
 
 function openLetter(){
 
     document
         .getElementById("cover")
         .classList.add("open");
+
 
     setTimeout(()=>{
 
@@ -1502,7 +1650,9 @@ function openLetter(){
 }
 
 
-/* LOVE CODE */
+/* =========================
+   LOVE CODE
+========================= */
 
 function checkLoveCode(){
 
@@ -1522,35 +1672,45 @@ function checkLoveCode(){
 
         error.textContent="";
 
+
         document
             .getElementById("proposalScreen")
             .style.display="none";
 
+
         const greeting =
             document.getElementById("greetingCard");
 
+
         greeting.classList.add("show");
+
 
         showPoem();
 
+
         createLoveExplosion();
+
 
     }else{
 
-        error.textContent=
+        error.textContent =
             "💜 Type I LOVE YOU ❤️";
+
 
         input.animate(
             [
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(10px)"
                 },
+
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(0)"
                 }
@@ -1563,7 +1723,9 @@ function checkLoveCode(){
 }
 
 
-/* TAMIL POEM */
+/* =========================
+   TAMIL POEM
+========================= */
 
 const poemLines = [
 
@@ -1591,21 +1753,26 @@ function showPoem(){
 
     poem.innerHTML="";
 
+
     poemLines.forEach(
         (line,index)=>{
 
         const p =
             document.createElement("p");
 
+
         p.className =
             index === poemLines.length-1
             ? "poem-line poem-final"
             : "poem-line";
 
+
         p.textContent=line;
+
 
         p.style.animationDelay =
             (index * 1.1)+"s";
+
 
         poem.appendChild(p);
 
@@ -1614,7 +1781,9 @@ function showPoem(){
 }
 
 
-/* LOVE EXPLOSION */
+/* =========================
+   LOVE EXPLOSION
+========================= */
 
 function createLoveExplosion(){
 
@@ -1627,6 +1796,7 @@ function createLoveExplosion(){
         "✨"
     ];
 
+
     for(let i=0;i<35;i++){
 
         setTimeout(()=>{
@@ -1634,25 +1804,33 @@ function createLoveExplosion(){
             const item =
                 document.createElement("div");
 
+
             item.className="float";
+
 
             item.textContent =
                 symbols[
                     Math.floor(
-                        Math.random()*symbols.length
+                        Math.random()*
+                        symbols.length
                     )
                 ];
+
 
             item.style.left =
                 Math.random()*100+"%";
 
+
             item.style.fontSize =
                 (16+Math.random()*20)+"px";
+
 
             item.style.animationDuration =
                 (4+Math.random()*4)+"s";
 
+
             document.body.appendChild(item);
+
 
             setTimeout(()=>{
                 item.remove();
@@ -1665,9 +1843,12 @@ function createLoveExplosion(){
 }
 
 
-/* MEMORIES REVEAL */
+/* =========================
+   MEMORIES REVEAL
+========================= */
 
 let memoriesStarted=false;
+
 
 function revealMemories(){
 
@@ -1675,25 +1856,35 @@ function revealMemories(){
         return;
     }
 
+
     memoriesStarted=true;
+
 
     document
         .getElementById("memoryReveal")
         .style.display="none";
 
+
     const content =
-        document.getElementById("memoriesContent");
+        document.getElementById(
+            "memoriesContent"
+        );
+
 
     content.classList.add("show");
 
+
     current=0;
+
 
     showPhoto();
 
 }
 
 
-/* PHOTOS */
+/* =========================
+   PHOTOS
+========================= */
 
 const photos=[
 
@@ -1710,6 +1901,7 @@ const photos=[
 
 ];
 
+
 let current=0;
 
 
@@ -1719,36 +1911,50 @@ function showPhoto(){
         return;
     }
 
+
     const img =
         document.getElementById("photo");
+
 
     const smoke =
         document.getElementById("photoSmoke");
 
+
     img.classList.remove("roll");
 
+
     void img.offsetWidth;
+
 
     img.src =
         photos[current];
 
+
     img.classList.add("roll");
+
 
     smoke.classList.remove("active");
 
+
     void smoke.offsetWidth;
 
+
     smoke.classList.add("active");
+
 
     document
         .getElementById("count")
         .textContent =
-        (current+1)+" / "+photos.length;
+        (current+1)+
+        " / "+
+        photos.length;
 
 }
 
 
-/* AUTO PHOTO ROLL */
+/* =========================
+   AUTO PHOTO ROLL
+========================= */
 
 setInterval(()=>{
 
@@ -1756,11 +1962,16 @@ setInterval(()=>{
         return;
     }
 
+
     const section =
-        document.getElementById("memories");
+        document.getElementById(
+            "memories"
+        );
+
 
     const rect =
         section.getBoundingClientRect();
+
 
     if(
         rect.top < window.innerHeight &&
@@ -1769,9 +1980,11 @@ setInterval(()=>{
 
         current++;
 
+
         if(current >= photos.length){
             current=0;
         }
+
 
         showPhoto();
 
@@ -1780,25 +1993,37 @@ setInterval(()=>{
 },4000);
 
 
-/* SONG */
+/* =========================
+   SONG
+========================= */
 
 let songOpened=false;
+
 
 function openSongPlayer(){
 
     const player =
-        document.getElementById("songPlayer");
+        document.getElementById(
+            "songPlayer"
+        );
+
 
     const audio =
-        document.getElementById("audio");
+        document.getElementById(
+            "audio"
+        );
+
 
     if(!songOpened){
 
         songOpened=true;
 
+
         player.classList.add("show");
 
+
         audio.play().catch(()=>{});
+
 
     }else{
 
@@ -1817,7 +2042,10 @@ function openSongPlayer(){
 }
 
 
-/* STORY PASSWORD */
+/* =========================
+   STORY PASSWORD
+   PASSWORD: 29072025
+========================= */
 
 function checkStoryPassword(){
 
@@ -1827,8 +2055,10 @@ function checkStoryPassword(){
         .value
         .trim();
 
+
     const correctStoryPassword =
         "29072025";
+
 
     if(value === correctStoryPassword){
 
@@ -1836,14 +2066,22 @@ function checkStoryPassword(){
             .getElementById("storyError")
             .textContent="";
 
+
+        /*
+           Story password correct.
+           Now unlock STORY.
+        */
+
         go("story");
+
 
     }else{
 
         document
             .getElementById("storyError")
-            .textContent=
+            .textContent =
             "😌 Wrong date! Try again ❤️";
+
 
         document
             .getElementById("storyPass")
@@ -1852,12 +2090,15 @@ function checkStoryPassword(){
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(10px)"
                 },
+
                 {
                     transform:"translateX(-10px)"
                 },
+
                 {
                     transform:"translateX(0)"
                 }
@@ -1870,7 +2111,9 @@ function checkStoryPassword(){
 }
 
 
-/* SCRATCH */
+/* =========================
+   SCRATCH
+========================= */
 
 function revealScratch(){
 
@@ -1881,14 +2124,18 @@ function revealScratch(){
 }
 
 
-/* FLOATING DECORATION */
+/* =========================
+   FLOATING DECORATION
+========================= */
 
 setInterval(()=>{
 
     const d =
         document.createElement("div");
 
+
     d.className="float";
+
 
     const items=[
         "💜",
@@ -1898,6 +2145,7 @@ setInterval(()=>{
         "🌸"
     ];
 
+
     d.textContent =
         items[
             Math.floor(
@@ -1905,16 +2153,21 @@ setInterval(()=>{
             )
         ];
 
+
     d.style.left =
         Math.random()*100+"%";
+
 
     d.style.fontSize =
         (15+Math.random()*18)+"px";
 
+
     d.style.animationDuration =
         (6+Math.random()*5)+"s";
 
+
     document.body.appendChild(d);
+
 
     setTimeout(()=>{
         d.remove();
@@ -1923,12 +2176,16 @@ setInterval(()=>{
 },1200);
 
 
-/* FINAL CONFETTI */
+/* =========================
+   FINAL CONFETTI
+========================= */
 
 const finalSection =
     document.getElementById("final");
 
+
 let confettiDone=false;
+
 
 window.addEventListener(
     "scroll",
@@ -1936,6 +2193,7 @@ window.addEventListener(
 
     const rect =
         finalSection.getBoundingClientRect();
+
 
     if(
         rect.top <
@@ -1945,6 +2203,7 @@ window.addEventListener(
 
         confettiDone=true;
 
+
         for(let i=0;i<80;i++){
 
             setTimeout(()=>{
@@ -1952,7 +2211,9 @@ window.addEventListener(
                 const c =
                     document.createElement("div");
 
+
                 c.className="confetti";
+
 
                 const items=[
                     "💜",
@@ -1963,23 +2224,30 @@ window.addEventListener(
                     "🦋"
                 ];
 
+
                 c.textContent =
                     items[
                         Math.floor(
-                            Math.random()*items.length
+                            Math.random()*
+                            items.length
                         )
                     ];
+
 
                 c.style.left =
                     Math.random()*100+"%";
 
+
                 c.style.fontSize =
                     (12+Math.random()*18)+"px";
+
 
                 c.style.animationDuration =
                     (3+Math.random()*4)+"s";
 
+
                 document.body.appendChild(c);
+
 
                 setTimeout(()=>{
                     c.remove();
