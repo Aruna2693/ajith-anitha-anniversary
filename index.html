@@ -7,6 +7,7 @@
 <title>For My Thangapulla 💜</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -110,6 +111,61 @@ button{
 
 button:hover{
     transform:scale(1.05);
+}
+
+/* =========================
+   HOME LOCK
+========================= */
+
+#homeLock{
+    text-align:center;
+}
+
+.home-lock-icon{
+    font-size:55px;
+    margin:10px 0 15px;
+    animation:lockFloat 2s infinite ease-in-out;
+}
+
+@keyframes lockFloat{
+    50%{
+        transform:translateY(-8px) scale(1.05);
+    }
+}
+
+.home-lock-text{
+    color:#e6c8f2;
+    line-height:1.8;
+    margin:10px 0 20px;
+}
+
+.home-lock-box{
+    margin-top:20px;
+}
+
+#homePassword{
+    width:100%;
+    max-width:280px;
+    padding:14px 18px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.2);
+    outline:none;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    text-align:center;
+    font-size:18px;
+    letter-spacing:5px;
+}
+
+#homePassword::placeholder{
+    letter-spacing:2px;
+    color:#cdb7d8;
+}
+
+#homeLockError{
+    min-height:30px;
+    margin-top:12px;
+    color:#ff9fcf;
 }
 
 /* HOME */
@@ -321,18 +377,22 @@ button:hover{
 }
 
 .photo-smoke span:nth-child(1){left:10%;}
+
 .photo-smoke span:nth-child(2){
     left:25%;
     animation-delay:.12s;
 }
+
 .photo-smoke span:nth-child(3){
     left:42%;
     animation-delay:.22s;
 }
+
 .photo-smoke span:nth-child(4){
     left:60%;
     animation-delay:.08s;
 }
+
 .photo-smoke span:nth-child(5){
     left:78%;
     animation-delay:.18s;
@@ -752,38 +812,87 @@ audio{
         font-size:34px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- 1 HOME -->
+<!-- =========================
+     1 HOME
+========================= -->
 
 <section id="home">
 
 <div class="container">
 
-<div class="card">
+<!-- HOME LOCK -->
+<div class="card" id="homeLock">
 
-<div class="intro-heart">
-💜♾️🤍
+    <div class="home-lock-icon">
+        🔐💜
+    </div>
+
+    <div class="small">
+        A Little Secret
+    </div>
+
+    <h1>
+        This Is For You 💜
+    </h1>
+
+    <p class="home-lock-text">
+        8 digit secret number enter pannunga... ❤️<br>
+        Only for my Thangapulla 🥹💜
+    </p>
+
+    <div class="home-lock-box">
+
+        <input
+            type="password"
+            id="homePassword"
+            inputmode="numeric"
+            maxlength="8"
+            pattern="[0-9]*"
+            placeholder="8 Digit Number"
+            autocomplete="off"
+        >
+
+        <br><br>
+
+        <button onclick="checkHomePassword()">
+            Unlock 💜
+        </button>
+
+        <p id="homeLockError"></p>
+
+    </div>
+
 </div>
 
-<div class="small">
-A Little Surprise For You
-</div>
 
-<h1>
-This Is For You 💜
-</h1>
+<!-- ORIGINAL HOME CONTENT -->
+<div class="card" id="homeContent" style="display:none;">
 
-<div class="intro-text">
-Thangapulla ❤️
-</div>
+    <div class="intro-heart">
+        💜♾️🤍
+    </div>
 
-<button onclick="go('anniversary')">
-Touch Here 💜
-</button>
+    <div class="small">
+        A Little Surprise For You
+    </div>
+
+    <h1>
+        This Is For You 💜
+    </h1>
+
+    <div class="intro-text">
+        Thangapulla ❤️
+    </div>
+
+    <button onclick="go('anniversary')">
+        Touch Here 💜
+    </button>
 
 </div>
 
@@ -800,30 +909,30 @@ Touch Here 💜
 
 <div class="card">
 
-<div class="intro-heart">
-💜🤍💕
-</div>
+    <div class="intro-heart">
+        💜🤍💕
+    </div>
 
-<div class="small">
-Our Beautiful Beginning
-</div>
+    <div class="small">
+        Our Beautiful Beginning
+    </div>
 
-<h1>
-Happy 1st Anniversary
-</h1>
+    <h1>
+        Happy 1st Anniversary
+    </h1>
 
-<h2>
-Thangapulla ❤️
-</h2>
+    <h2>
+        Thangapulla ❤️
+    </h2>
 
-<p style="line-height:1.8">
-One year of love, smiles, fights,
-hugs, memories and countless little moments. ♾️
-</p>
+    <p style="line-height:1.8">
+        One year of love, smiles, fights, hugs,
+        memories and countless little moments. ♾️
+    </p>
 
-<button onclick="go('letter')">
-Open My Letter 💌
-</button>
+    <button onclick="go('letter')">
+        Open My Letter 💌
+    </button>
 
 </div>
 
@@ -840,101 +949,110 @@ Open My Letter 💌
 
 <div class="card">
 
-<div class="small">
-A Letter From My Heart
-</div>
+    <div class="small">
+        A Letter From My Heart
+    </div>
 
-<h1>
-💌 For You
-</h1>
+    <h1>
+        💌 For You
+    </h1>
 
-<p class="cover-title">
-Touch the envelope ❤️
-</p>
+    <p class="cover-title">
+        Touch the envelope ❤️
+    </p>
 
-<div
-class="cover"
-id="cover"
-onclick="openLetter()">
+    <div
+        class="cover"
+        id="cover"
+        onclick="openLetter()"
+    >
 
-<div class="cover-body"></div>
+        <div class="cover-body"></div>
+        <div class="cover-flap"></div>
 
-<div class="cover-flap"></div>
+        <div class="cover-heart">
+            💜
+        </div>
 
-<div class="cover-heart">
-💜
-</div>
+    </div>
 
-</div>
 
-<div class="greeting" id="greeting">
+    <div class="greeting" id="greeting">
 
-<div
-id="proposalScreen"
-class="proposal-screen">
+        <div
+            id="proposalScreen"
+            class="proposal-screen"
+        >
 
-<div class="proposal-animation">
-👩🏻‍❤️‍💋‍👨🏻
-</div>
+            <div class="proposal-animation">
+                👩🏻‍❤️‍💋‍👨🏻
+            </div>
 
-<h2>
-One Little Question 💜
-</h2>
+            <h2>
+                One Little Question 💜
+            </h2>
 
-<p>
-Will you always be my person? 🥹❤️
-</p>
+            <p>
+                Will you always be my person? 🥹❤️
+            </p>
 
-<div class="code-box">
+            <div class="code-box">
 
-<input
-type="text"
-id="loveCode"
-placeholder="Enter I LOVE YOU ❤️"
-autocomplete="off">
+                <input
+                    type="text"
+                    id="loveCode"
+                    placeholder="Enter I LOVE YOU ❤️"
+                    autocomplete="off"
+                >
 
-<button onclick="checkLoveCode()">
-Enter 💜
-</button>
+                <button onclick="checkLoveCode()">
+                    Enter 💜
+                </button>
 
-</div>
+            </div>
 
-<p
-id="codeError"
-class="code-error">
-</p>
+            <p
+                id="codeError"
+                class="code-error"
+            ></p>
 
-</div>
+        </div>
 
-<div
-id="greetingCard"
-class="greeting-card">
 
-<div class="smoke">
-✨ ✨ ✨
-</div>
+        <div
+            id="greetingCard"
+            class="greeting-card"
+        >
 
-<div class="butterflies">
-🦋 💜 🦋 🤍 🦋
-</div>
+            <div class="smoke">
+                ✨ ✨ ✨
+            </div>
 
-<div class="floating-hearts">
-❤️ 💜 🤍 💕 💗
-</div>
+            <div class="butterflies">
+                🦋 💜 🦋 🤍 🦋
+            </div>
 
-<h2>
-💌 My Thangapulla
-</h2>
+            <div class="floating-hearts">
+                ❤️ 💜 🤍 💕 💗
+            </div>
 
-<div id="poem" class="poem"></div>
+            <h2>
+                💌 My Thangapulla
+            </h2>
 
-</div>
+            <div
+                id="poem"
+                class="poem"
+            ></div>
 
-</div>
+        </div>
 
-<button onclick="go('memories')">
-Our Memories 📸
-</button>
+    </div>
+
+
+    <button onclick="go('memories')">
+        Our Memories 📸
+    </button>
 
 </div>
 
@@ -951,70 +1069,75 @@ Our Memories 📸
 
 <div class="card">
 
-<div class="small">
-Our Little World
-</div>
+    <div class="small">
+        Our Little World
+    </div>
 
-<h1>
-Our Memories 📸
-</h1>
+    <h1>
+        Our Memories 📸
+    </h1>
 
-<p class="memory-text">
-Our beautiful memories are waiting for you... ❤️
-</p>
+    <p class="memory-text">
+        Our beautiful memories are waiting for you... ❤️
+    </p>
 
-<div id="memoriesContent">
 
-<div class="photo-stage">
+    <div id="memoriesContent">
 
-<div
-id="photoSmoke"
-class="photo-smoke">
+        <div class="photo-stage">
 
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
+            <div
+                id="photoSmoke"
+                class="photo-smoke"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-</div>
+            <div class="photo-box">
 
-<div class="photo-box">
+                <img
+                    id="photo"
+                    src="photo1.jpg"
+                    alt="Our Memory"
+                >
 
-<img
-id="photo"
-src="photo1.jpg"
-alt="Our Memory">
+            </div>
 
-</div>
+        </div>
 
-</div>
 
-<div
-class="count"
-id="count">
-1 / 10
-</div>
+        <div
+            class="count"
+            id="count"
+        >
+            1 / 10
+        </div>
 
-<p class="memory-text">
-Our memories keep rolling... ❤️
-</p>
+        <p class="memory-text">
+            Our memories keep rolling... ❤️
+        </p>
 
-<button onclick="go('song')">
-Our Song 🎵
-</button>
+        <button onclick="go('song')">
+            Our Song 🎵
+        </button>
 
-</div>
+    </div>
 
-<div
-id="memoryReveal"
-class="memory-reveal">
 
-<button onclick="revealMemories()">
-Touch To Reveal Our Memories 💜
-</button>
+    <div
+        id="memoryReveal"
+        class="memory-reveal"
+    >
 
-</div>
+        <button onclick="revealMemories()">
+            Touch To Reveal Our Memories 💜
+        </button>
+
+    </div>
 
 </div>
 
@@ -1031,61 +1154,63 @@ Touch To Reveal Our Memories 💜
 
 <div class="card">
 
-<div class="small">
-A Song For Us
-</div>
+    <div class="small">
+        A Song For Us
+    </div>
 
-<h1>
-🎁 Our Favorite Song
-</h1>
+    <h1>
+        🎁 Our Favorite Song
+    </h1>
 
-<!-- TOUCH THIS GIFT -->
+    <div
+        class="gift"
+        onclick="openSongPlayer()"
+    >
 
-<div
-class="gift"
-onclick="openSongPlayer()">
+        <div class="gift-body"></div>
+        <div class="gift-lid"></div>
+        <div class="ribbon-v"></div>
 
-<div class="gift-body"></div>
-<div class="gift-lid"></div>
-<div class="ribbon-v"></div>
+    </div>
 
-</div>
+    <h2>
+        Kanne Kanmaniye 🎵
+    </h2>
 
-<h2>
-Kanne Kanmaniye 🎵
-</h2>
 
-<!-- PLAYER HIDDEN UNTIL GIFT IS TOUCHED -->
+    <div
+        id="songPlayer"
+        class="song-player"
+    >
 
-<div
-id="songPlayer"
-class="song-player">
+        <audio
+            id="audio"
+            controls
+        >
 
-<audio
-id="audio"
-controls>
+            <source
+                src="song.mp3"
+                type="audio/mpeg"
+            >
 
-<source
-src="song.mp3"
-type="audio/mpeg">
+            Your browser does not support audio.
 
-Your browser does not support audio.
+        </audio>
 
-</audio>
+        <p style="line-height:1.8">
+            🎵 Our song is playing... ❤️
+        </p>
 
-<p style="line-height:1.8">
-🎵 Our song is playing... ❤️
-</p>
+    </div>
 
-</div>
 
-<p style="line-height:1.8">
-Touch the gift to open our song. ❤️
-</p>
+    <p style="line-height:1.8">
+        Touch the gift to open our song. ❤️
+    </p>
 
-<button onclick="go('storyPassword')">
-Continue To Our Story 📖
-</button>
+    <button onclick="go('storyPassword')">
+        Continue To Our Story 📖
+    </button>
 
 </div>
 
@@ -1102,37 +1227,41 @@ Continue To Our Story 📖
 
 <div class="card">
 
-<div class="lock" style="font-size:20px;">
-🔐💜
-</div>
+    <div
+        class="lock"
+        style="font-size:20px;"
+    >
+        🔐💜
+    </div>
 
-<div class="small">
-Only For You
-</div>
+    <div class="small">
+        Only For You
+    </div>
 
-<h1>
-Our Secret Story 💌
-</h1>
+    <h1>
+        Our Secret Story 💌
+    </h1>
 
-<p>
-Enter our secret date to continue ❤️
-</p>
+    <p>
+        Enter our secret date to continue ❤️
+    </p>
 
-<input
-id="storyPass"
-type="password"
-inputmode="numeric"
-maxlength="8"
-placeholder="DDMMYYYY">
+    <input
+        id="storyPass"
+        type="password"
+        inputmode="numeric"
+        maxlength="8"
+        placeholder="DDMMYYYY"
+    >
 
-<div
-id="storyError"
-class="error">
-</div>
+    <div
+        id="storyError"
+        class="error"
+    ></div>
 
-<button onclick="checkStoryPassword()">
-Unlock Our Story ❤️
-</button>
+    <button onclick="checkStoryPassword()">
+        Unlock Our Story ❤️
+    </button>
 
 </div>
 
@@ -1149,36 +1278,40 @@ Unlock Our Story ❤️
 
 <div class="card">
 
-<div class="small">
-One More Surprise
-</div>
+    <div class="small">
+        One More Surprise
+    </div>
 
-<h1>
-Our Story 💌
-</h1>
+    <h1>
+        Our Story 💌
+    </h1>
 
-<p style="line-height:1.8">
-Touch the card to reveal our special memory ❤️
-</p>
+    <p style="line-height:1.8">
+        Touch the card to reveal our special memory ❤️
+    </p>
 
-<div
-class="scratch"
-id="scratch"
-onclick="revealScratch()">
 
-<img
-src="story.jpg"
-alt="Our Story">
+    <div
+        class="scratch"
+        id="scratch"
+        onclick="revealScratch()"
+    >
 
-<div class="scratch-cover">
-💜 Touch To Reveal 💜
-</div>
+        <img
+            src="story.jpg"
+            alt="Our Story"
+        >
 
-</div>
+        <div class="scratch-cover">
+            💜 Touch To Reveal 💜
+        </div>
 
-<button onclick="go('final')">
-One Last Surprise ❤️
-</button>
+    </div>
+
+
+    <button onclick="go('final')">
+        One Last Surprise ❤️
+    </button>
 
 </div>
 
@@ -1195,58 +1328,57 @@ One Last Surprise ❤️
 
 <div class="card">
 
-<div class="final-heart">
-💜🤍💕
-</div>
+    <div class="final-heart">
+        💜🤍💕
+    </div>
 
-<div class="small">
-My Favorite Part
-</div>
+    <div class="small">
+        My Favorite Part
+    </div>
 
-<h1>
-Happy 1st Anniversary
-</h1>
+    <h1>
+        Happy 1st Anniversary
+    </h1>
 
-<h2>
-Thangapulla ❤️
-</h2>
+    <h2>
+        Thangapulla ❤️
+    </h2>
 
-<div class="final-flower">
-💐
-</div>
+    <div class="final-flower">
+        💐
+    </div>
 
-<div class="final-text">
+    <div class="final-text">
 
-<p>
-Thank you for coming to my life. ❤️
-</p>
+        <p>
+            Thank you for coming to my life. ❤️
+        </p>
 
-<p>
-Thank you for every smile,
-every hug,
-every little fight,
-and every beautiful memory.
-</p>
+        <p>
+            Thank you for every smile,
+            every hug, every little fight,
+            and every beautiful memory.
+        </p>
 
-<p>
-You are not just a part of my life...
-<br>
-<strong>
-You are my favorite part of it.
-</strong>
-</p>
+        <p>
+            You are not just a part of my life...
+            <br>
+            <strong>
+                You are my favorite part of it.
+            </strong>
+        </p>
 
-<p class="forever">
-I choose you today.<br>
-I will choose you tomorrow.<br>
-I will choose you forever. ♾️❤️
-</p>
+        <p class="forever">
+            I choose you today.<br>
+            I will choose you tomorrow.<br>
+            I will choose you forever. ♾️❤️
+        </p>
 
-</div>
+    </div>
 
-<h2 style="margin-top:25px">
-Forever & Always 💜🤍
-</h2>
+    <h2 style="margin-top:25px">
+        Forever & Always 💜🤍
+    </h2>
 
 </div>
 
@@ -1257,16 +1389,96 @@ Forever & Always 💜🤍
 
 <script>
 
+/* =========================
+   HOME LOCK
+========================= */
+
+function checkHomePassword(){
+
+    const input =
+        document.getElementById("homePassword");
+
+    const value =
+        input.value.trim();
+
+    const error =
+        document.getElementById("homeLockError");
+
+    const correctHomePassword =
+        "28082025";
+
+    if(value === correctHomePassword){
+
+        error.textContent = "";
+
+        document
+            .getElementById("homeLock")
+            .style.display = "none";
+
+        document
+            .getElementById("homeContent")
+            .style.display = "block";
+
+        document
+            .getElementById("homeContent")
+            .animate(
+                [
+                    {
+                        opacity:0,
+                        transform:"scale(.8) translateY(25px)"
+                    },
+                    {
+                        opacity:1,
+                        transform:"scale(1) translateY(0)"
+                    }
+                ],
+                {
+                    duration:900,
+                    easing:"ease-out",
+                    fill:"forwards"
+                }
+            );
+
+        createLoveExplosion();
+
+    }else{
+
+        error.textContent =
+            "🔐 Wrong number! Try again ❤️";
+
+        input.animate(
+            [
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(10px)"
+                },
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(0)"
+                }
+            ],
+            400
+        );
+
+    }
+
+}
+
+
 /* SCROLL */
 
 function go(id){
 
     document
-    .getElementById(id)
-    .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-    });
+        .getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
 
 }
 
@@ -1276,14 +1488,14 @@ function go(id){
 function openLetter(){
 
     document
-    .getElementById("cover")
-    .classList.add("open");
+        .getElementById("cover")
+        .classList.add("open");
 
     setTimeout(()=>{
 
         document
-        .getElementById("greeting")
-        .classList.add("show");
+            .getElementById("greeting")
+            .classList.add("show");
 
     },700);
 
@@ -1295,29 +1507,27 @@ function openLetter(){
 function checkLoveCode(){
 
     const input =
-    document
-    .getElementById("loveCode");
+        document.getElementById("loveCode");
 
     const code =
-    input.value
-    .trim()
-    .toLowerCase();
+        input.value
+        .trim()
+        .toLowerCase();
 
     const error =
-    document
-    .getElementById("codeError");
+        document.getElementById("codeError");
+
 
     if(code === "i love you"){
 
         error.textContent="";
 
         document
-        .getElementById("proposalScreen")
-        .style.display="none";
+            .getElementById("proposalScreen")
+            .style.display="none";
 
         const greeting =
-        document
-        .getElementById("greetingCard");
+            document.getElementById("greetingCard");
 
         greeting.classList.add("show");
 
@@ -1328,16 +1538,24 @@ function checkLoveCode(){
     }else{
 
         error.textContent=
-        "💜 Type I LOVE YOU ❤️";
+            "💜 Type I LOVE YOU ❤️";
 
         input.animate(
-        [
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(10px)"},
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(0)"}
-        ],
-        400
+            [
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(10px)"
+                },
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(0)"
+                }
+            ],
+            400
         );
 
     }
@@ -1349,37 +1567,19 @@ function checkLoveCode(){
 
 const poemLines = [
 
-`என் வாழ்க்கையில் நான் எடுத்த மிக அழகான முடிவு…
-உன்னை திருமணம் செய்ததுதான். 🥹💜`,
+`என் வாழ்க்கையில் நான் எடுத்த மிக அழகான முடிவு… உன்னை திருமணம் செய்ததுதான். 🥹💜`,
 
-`நீ என் வாழ்க்கையில் வந்த பிறகு,
-“கணவன்” என்ற உறவைத் தாண்டி,
-என் நண்பனாகவும், என் பலமாகவும்,
-என் சந்தோஷமாகவும் மாறிவிட்டாய். 🫂🤍`,
+`நீ என் வாழ்க்கையில் வந்த பிறகு, “கணவன்” என்ற உறவைத் தாண்டி, என் நண்பனாகவும், என் பலமாகவும், என் சந்தோஷமாகவும் மாறிவிட்டாய். 🫂🤍`,
 
-`எத்தனை வருடங்கள் கடந்தாலும்,
-உன்னை முதன்முதலில் பார்த்த அந்த உணர்வும்,
-உன்னுடன் வாழ்க்கையை தொடங்கிய அந்த சந்தோஷமும்
-என் மனதில் என்றும் மாறாது. 🥰`,
+`எத்தனை வருடங்கள் கடந்தாலும், உன்னை முதன்முதலில் பார்த்த அந்த உணர்வும், உன்னுடன் வாழ்க்கையை தொடங்கிய அந்த சந்தோஷமும் என் மனதில் என்றும் மாறாது. 🥰`,
 
-`வாழ்க்கையில் சந்தோஷம் வந்தாலும் சரி,
-கஷ்டம் வந்தாலும் சரி…
-என் கையை பிடித்துக்கொண்டு
-கடைசி வரை என்னுடன் இருப்பது நீயாகவே இருக்க வேண்டும். 💜`,
+`வாழ்க்கையில் சந்தோஷம் வந்தாலும் சரி, கஷ்டம் வந்தாலும் சரி… என் கையை பிடித்துக்கொண்டு கடைசி வரை என்னுடன் இருப்பது நீயாகவே இருக்க வேண்டும். 💜`,
 
-`நம்முடைய வாழ்க்கையில் இன்னும் நிறைய கனவுகள்
-நனவாக வேண்டும்…
-இன்னும் நிறைய சிரிப்புகள், பயணங்கள்,
-அழகான நினைவுகள் நம்மை தேடி வர வேண்டும். 🥰`,
+`நம்முடைய வாழ்க்கையில் இன்னும் நிறைய கனவுகள் நனவாக வேண்டும்… இன்னும் நிறைய சிரிப்புகள், பயணங்கள், அழகான நினைவுகள் நம்மை தேடி வர வேண்டும். 🥰`,
 
-`“நான் உன்னை காதலிக்கிறேன்” என்று சொல்வதைவிட,
-“என் வாழ்நாள் முழுவதும் உன்னுடன் இருக்க விரும்புகிறேன்”
-என்பதுதான் என் உண்மையான காதல். 💜`,
+`“நான் உன்னை காதலிக்கிறேன்” என்று சொல்வதைவிட, “என் வாழ்நாள் முழுவதும் உன்னுடன் இருக்க விரும்புகிறேன்” என்பதுதான் என் உண்மையான காதல். 💜`,
 
-`என் வாழ்க்கையின் அழகான பாதி நீ…
-என் இன்றும் நீ,
-என் நாளையும் நீ,
-என் எப்போதும் நீ தான். 🫶🏻♾️💜🤍`
+`என் வாழ்க்கையின் அழகான பாதி நீ… என் இன்றும் நீ, என் நாளையும் நீ, என் எப்போதும் நீ தான். 🫶🏻♾️💜🤍`
 
 ];
 
@@ -1387,7 +1587,7 @@ const poemLines = [
 function showPoem(){
 
     const poem =
-    document.getElementById("poem");
+        document.getElementById("poem");
 
     poem.innerHTML="";
 
@@ -1395,17 +1595,17 @@ function showPoem(){
         (line,index)=>{
 
         const p =
-        document.createElement("p");
+            document.createElement("p");
 
-        p.className=
-        index === poemLines.length-1
-        ? "poem-line poem-final"
-        : "poem-line";
+        p.className =
+            index === poemLines.length-1
+            ? "poem-line poem-final"
+            : "poem-line";
 
         p.textContent=line;
 
-        p.style.animationDelay=
-        (index * 1.1)+"s";
+        p.style.animationDelay =
+            (index * 1.1)+"s";
 
         poem.appendChild(p);
 
@@ -1432,25 +1632,25 @@ function createLoveExplosion(){
         setTimeout(()=>{
 
             const item =
-            document.createElement("div");
+                document.createElement("div");
 
             item.className="float";
 
-            item.textContent=
-            symbols[
-                Math.floor(
-                    Math.random()*symbols.length
-                )
-            ];
+            item.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random()*symbols.length
+                    )
+                ];
 
-            item.style.left=
-            Math.random()*100+"%";
+            item.style.left =
+                Math.random()*100+"%";
 
-            item.style.fontSize=
-            (16+Math.random()*20)+"px";
+            item.style.fontSize =
+                (16+Math.random()*20)+"px";
 
-            item.style.animationDuration=
-            (4+Math.random()*4)+"s";
+            item.style.animationDuration =
+                (4+Math.random()*4)+"s";
 
             document.body.appendChild(item);
 
@@ -1478,11 +1678,11 @@ function revealMemories(){
     memoriesStarted=true;
 
     document
-    .getElementById("memoryReveal")
-    .style.display="none";
+        .getElementById("memoryReveal")
+        .style.display="none";
 
     const content =
-    document.getElementById("memoriesContent");
+        document.getElementById("memoriesContent");
 
     content.classList.add("show");
 
@@ -1496,6 +1696,7 @@ function revealMemories(){
 /* PHOTOS */
 
 const photos=[
+
     "photo1.jpg",
     "photo2.jpg",
     "photo3.jpg",
@@ -1506,9 +1707,11 @@ const photos=[
     "photo8.jpg",
     "photo9.jpg",
     "photo10.jpg"
+
 ];
 
 let current=0;
+
 
 function showPhoto(){
 
@@ -1517,17 +1720,17 @@ function showPhoto(){
     }
 
     const img =
-    document.getElementById("photo");
+        document.getElementById("photo");
 
     const smoke =
-    document.getElementById("photoSmoke");
+        document.getElementById("photoSmoke");
 
     img.classList.remove("roll");
 
     void img.offsetWidth;
 
     img.src =
-    photos[current];
+        photos[current];
 
     img.classList.add("roll");
 
@@ -1538,9 +1741,9 @@ function showPhoto(){
     smoke.classList.add("active");
 
     document
-    .getElementById("count")
-    .textContent =
-    (current+1)+" / "+photos.length;
+        .getElementById("count")
+        .textContent =
+        (current+1)+" / "+photos.length;
 
 }
 
@@ -1554,10 +1757,10 @@ setInterval(()=>{
     }
 
     const section =
-    document.getElementById("memories");
+        document.getElementById("memories");
 
     const rect =
-    section.getBoundingClientRect();
+        section.getBoundingClientRect();
 
     if(
         rect.top < window.innerHeight &&
@@ -1579,22 +1782,15 @@ setInterval(()=>{
 
 /* SONG */
 
-/*
-    Gift box touch pannina mattum
-    music player visible aagum.
-    User touch event-la irukkarathunaala
-    browser audio autoplay-ai allow pannum.
-*/
-
 let songOpened=false;
 
 function openSongPlayer(){
 
     const player =
-    document.getElementById("songPlayer");
+        document.getElementById("songPlayer");
 
     const audio =
-    document.getElementById("audio");
+        document.getElementById("audio");
 
     if(!songOpened){
 
@@ -1602,16 +1798,7 @@ function openSongPlayer(){
 
         player.classList.add("show");
 
-        audio.play().catch(()=>{
-
-            /*
-                Sila mobile browsers autoplay-ai
-                block pannina, player visible-ah
-                irukkum. User play button-ai
-                touch pannina song play aagum.
-            */
-
-        });
+        audio.play().catch(()=>{});
 
     }else{
 
@@ -1635,39 +1822,47 @@ function openSongPlayer(){
 function checkStoryPassword(){
 
     const value =
-    document
-    .getElementById("storyPass")
-    .value
-    .trim();
+        document
+        .getElementById("storyPass")
+        .value
+        .trim();
 
     const correctStoryPassword =
-    "29072025";
+        "29072025";
 
     if(value === correctStoryPassword){
 
         document
-        .getElementById("storyError")
-        .textContent="";
+            .getElementById("storyError")
+            .textContent="";
 
         go("story");
 
     }else{
 
         document
-        .getElementById("storyError")
-        .textContent=
-        "😌 Wrong date! Try again ❤️";
+            .getElementById("storyError")
+            .textContent=
+            "😌 Wrong date! Try again ❤️";
 
         document
-        .getElementById("storyPass")
-        .animate(
-        [
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(10px)"},
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(0)"}
-        ],
-        400
+            .getElementById("storyPass")
+            .animate(
+            [
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(10px)"
+                },
+                {
+                    transform:"translateX(-10px)"
+                },
+                {
+                    transform:"translateX(0)"
+                }
+            ],
+            400
         );
 
     }
@@ -1680,8 +1875,8 @@ function checkStoryPassword(){
 function revealScratch(){
 
     document
-    .getElementById("scratch")
-    .classList.add("revealed");
+        .getElementById("scratch")
+        .classList.add("revealed");
 
 }
 
@@ -1691,7 +1886,7 @@ function revealScratch(){
 setInterval(()=>{
 
     const d =
-    document.createElement("div");
+        document.createElement("div");
 
     d.className="float";
 
@@ -1704,20 +1899,20 @@ setInterval(()=>{
     ];
 
     d.textContent =
-    items[
-        Math.floor(
-            Math.random()*items.length
-        )
-    ];
+        items[
+            Math.floor(
+                Math.random()*items.length
+            )
+        ];
 
     d.style.left =
-    Math.random()*100+"%";
+        Math.random()*100+"%";
 
     d.style.fontSize =
-    (15+Math.random()*18)+"px";
+        (15+Math.random()*18)+"px";
 
     d.style.animationDuration =
-    (6+Math.random()*5)+"s";
+        (6+Math.random()*5)+"s";
 
     document.body.appendChild(d);
 
@@ -1731,16 +1926,16 @@ setInterval(()=>{
 /* FINAL CONFETTI */
 
 const finalSection =
-document.getElementById("final");
+    document.getElementById("final");
 
 let confettiDone=false;
 
 window.addEventListener(
-"scroll",
-()=>{
+    "scroll",
+    ()=>{
 
     const rect =
-    finalSection.getBoundingClientRect();
+        finalSection.getBoundingClientRect();
 
     if(
         rect.top <
@@ -1755,7 +1950,7 @@ window.addEventListener(
             setTimeout(()=>{
 
                 const c =
-                document.createElement("div");
+                    document.createElement("div");
 
                 c.className="confetti";
 
@@ -1769,20 +1964,20 @@ window.addEventListener(
                 ];
 
                 c.textContent =
-                items[
-                    Math.floor(
-                        Math.random()*items.length
-                    )
-                ];
+                    items[
+                        Math.floor(
+                            Math.random()*items.length
+                        )
+                    ];
 
                 c.style.left =
-                Math.random()*100+"%";
+                    Math.random()*100+"%";
 
                 c.style.fontSize =
-                (12+Math.random()*18)+"px";
+                    (12+Math.random()*18)+"px";
 
                 c.style.animationDuration =
-                (3+Math.random()*4)+"s";
+                    (3+Math.random()*4)+"s";
 
                 document.body.appendChild(c);
 
