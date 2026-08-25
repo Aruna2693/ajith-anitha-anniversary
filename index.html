@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>For My Thangapulla 💜</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     font-family:Arial,"Noto Sans Tamil",sans-serif;
@@ -17,13 +24,18 @@ body{
     overflow-x:hidden;
 }
 
+/* BACKGROUND */
+
 body:before{
     content:"";
     position:fixed;
     inset:0;
     z-index:-10;
     background:
-    linear-gradient(rgba(15,4,25,.45),rgba(10,3,17,.72)),
+    linear-gradient(
+        rgba(10,3,18,.42),
+        rgba(8,2,15,.72)
+    ),
     url("background.jpg") center/cover fixed;
 }
 
@@ -32,13 +44,17 @@ body:after{
     position:fixed;
     inset:0;
     z-index:-9;
-    background:radial-gradient(circle,transparent 25%,rgba(0,0,0,.45));
+    background:radial-gradient(
+        circle,
+        transparent 20%,
+        rgba(0,0,0,.48)
+    );
     pointer-events:none;
 }
 
 section{
     min-height:100vh;
-    padding:35px 15px;
+    padding:30px 15px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -81,8 +97,12 @@ h2{
 button{
     border:0;
     color:white;
-    background:linear-gradient(135deg,#a64ddd,#63348a);
-    padding:14px 25px;
+    background:linear-gradient(
+        135deg,
+        #a64ddd,
+        #63348a
+    );
+    padding:13px 23px;
     border-radius:40px;
     font-weight:bold;
     cursor:pointer;
@@ -94,44 +114,66 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* INTRO */
+/* HOME */
 
 .intro-heart{
-    font-size:40px;
-    animation:heartBeat 1.3s infinite;
+    font-size:18px;
+    line-height:1;
+    margin:8px 0 15px;
+    animation:heartBeat 1.4s infinite;
 }
 
 @keyframes heartBeat{
-    0%,100%{transform:scale(1)}
-    35%{transform:scale(1.18)}
-    55%{transform:scale(.95)}
-    75%{transform:scale(1.1)}
+    0%,100%{
+        transform:scale(1);
+    }
+
+    35%{
+        transform:scale(1.15);
+    }
+
+    55%{
+        transform:scale(.96);
+    }
+
+    75%{
+        transform:scale(1.08);
+    }
 }
 
 .intro-text{
     font-size:22px;
     margin:18px 0 25px;
 }
+
 #home button{
-    padding:9px 17px;
-    font-size:18px;
-    border-radius:35px;
-} 
+    padding:10px 18px;
+    font-size:16px;
+}
+
 /* PASSWORD */
 
 .lock{
-    font-size:60px;
+    font-size:25px;
     animation:shake 2s infinite;
 }
 
 @keyframes shake{
-    0%,90%,100%{transform:rotate(0)}
-    92%{transform:rotate(-7deg)}
-    96%{transform:rotate(7deg)}
+    0%,90%,100%{
+        transform:rotate(0);
+    }
+
+    92%{
+        transform:rotate(-7deg);
+    }
+
+    96%{
+        transform:rotate(7deg);
+    }
 }
 
 input{
-    width:min(300px,100%);
+    width:min(310px,100%);
     padding:14px;
     border-radius:15px;
     border:1px solid #d59aff;
@@ -141,6 +183,10 @@ input{
     font-size:18px;
     outline:none;
     margin:18px 0 8px;
+}
+
+input::placeholder{
+    color:#d9c4e4;
 }
 
 .error{
@@ -162,7 +208,11 @@ input{
 .cover-body{
     position:absolute;
     inset:15px 0 0;
-    background:linear-gradient(135deg,#7d369c,#bd68d8);
+    background:linear-gradient(
+        135deg,
+        #7d369c,
+        #bd68d8
+    );
     border-radius:8px;
     box-shadow:0 15px 35px rgba(0,0,0,.4);
 }
@@ -191,7 +241,7 @@ input{
     left:50%;
     top:65px;
     transform:translateX(-50%);
-    font-size:45px;
+    font-size:38px;
     animation:heartBeat 1.3s infinite;
 }
 
@@ -215,54 +265,134 @@ input{
     pointer-events:auto;
 }
 
-.proposal{
-    font-size:55px;
-    margin:15px;
+.proposal-screen{
+    text-align:center;
+    padding:10px;
+}
+
+.proposal-animation{
+    font-size:58px;
+    margin:15px 0;
     animation:proposalFloat 2s infinite ease-in-out;
 }
 
 @keyframes proposalFloat{
-    50%{transform:translateY(-10px)}
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
-.poem{
-    text-align:left;
-    line-height:1.9;
-    font-size:16px;
-    color:#fae9ff;
+.code-box{
+    margin-top:20px;
 }
 
-.poem p{
-    margin-bottom:17px;
+.code-error{
+    min-height:30px;
+    color:#ff9fcf;
 }
 
-.forever{
+.greeting-card{
+    display:none;
+    position:relative;
     text-align:center;
-    color:#ffd1ee;
-    font-weight:bold;
-    font-size:19px;
+    overflow:hidden;
+    padding:20px 8px;
+}
+
+.greeting-card.show{
+    display:block;
+    animation:greetingOpen 1.2s ease forwards;
+}
+
+@keyframes greetingOpen{
+    from{
+        opacity:0;
+        transform:scale(.7) translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+/* SMOKE */
+
+.smoke{
+    font-size:26px;
+    letter-spacing:7px;
+    animation:smokeMove 2s infinite;
+}
+
+@keyframes smokeMove{
+    0%,100%{
+        opacity:.35;
+        transform:translateY(0);
+    }
+
+    50%{
+        opacity:1;
+        transform:translateY(-8px);
+    }
 }
 
 /* BUTTERFLIES */
 
-.butterfly{
-    position:absolute;
-    font-size:30px;
-    animation:fly 6s ease-in-out infinite;
-    pointer-events:none;
+.butterflies{
+    font-size:25px;
+    margin:12px 0;
+    animation:butterflyMove 2.5s infinite;
 }
 
-.b1{left:5%;top:20%}
-.b2{right:7%;top:35%;animation-delay:1s}
-.b3{left:10%;bottom:20%;animation-delay:2s}
-.b4{right:12%;bottom:15%;animation-delay:3s}
+@keyframes butterflyMove{
+    50%{
+        transform:translateY(-8px) rotate(2deg);
+    }
+}
 
-@keyframes fly{
-    0%{transform:translate(0,0) rotate(-10deg)}
-    25%{transform:translate(50px,-35px) rotate(10deg)}
-    50%{transform:translate(100px,15px) rotate(-5deg)}
-    75%{transform:translate(30px,55px) rotate(8deg)}
-    100%{transform:translate(0,0) rotate(-10deg)}
+/* HEARTS */
+
+.floating-hearts{
+    font-size:18px;
+    margin:12px 0;
+    animation:heartFloat 2s infinite;
+}
+
+@keyframes heartFloat{
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+/* POEM */
+
+.poem{
+    text-align:left;
+    padding:8px;
+}
+
+.poem-line{
+    opacity:0;
+    transform:translateY(18px);
+    animation:poemShow 1s ease forwards;
+    margin-bottom:19px;
+    line-height:1.95;
+    font-size:16px;
+    color:#fae9ff;
+}
+
+@keyframes poemShow{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.poem-final{
+    text-align:center;
+    color:#ffd1ee;
+    font-weight:bold;
+    font-size:19px;
 }
 
 /* PHOTOS */
@@ -290,26 +420,15 @@ input{
 @keyframes photoRoll{
     from{
         opacity:0;
-        transform:translateX(120px) rotate(7deg) scale(.85);
+        transform:translateX(120px)
+        rotate(7deg)
+        scale(.85);
     }
+
     to{
         opacity:1;
         transform:none;
     }
-}
-
-.photo-buttons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    margin:15px;
-}
-
-.photo-buttons button{
-    width:50px;
-    height:50px;
-    padding:0;
-    font-size:22px;
 }
 
 .count{
@@ -328,7 +447,9 @@ input{
 }
 
 @keyframes giftFloat{
-    50%{transform:translateY(-10px)}
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 .gift-body{
@@ -337,7 +458,10 @@ input{
     right:8px;
     bottom:0;
     height:70px;
-    background:linear-gradient(#b55cd1,#71368e);
+    background:linear-gradient(
+        #b55cd1,
+        #71368e
+    );
     border-radius:8px;
 }
 
@@ -373,7 +497,6 @@ audio{
     width:100%;
     height:320px;
     object-fit:contain;
-    object-position:center center;
     border-radius:20px;
     margin:15px 0;
 }
@@ -396,7 +519,11 @@ audio{
 .scratch-cover{
     position:absolute;
     inset:0;
-    background:linear-gradient(135deg,#8e4ba8,#542467);
+    background:linear-gradient(
+        135deg,
+        #8e4ba8,
+        #542467
+    );
     display:flex;
     align-items:center;
     justify-content:center;
@@ -415,22 +542,49 @@ audio{
 /* FINAL */
 
 .final-heart{
-    font-size:65px;
+    font-size:58px;
     animation:heartBeat 1.2s infinite;
 }
 
 .final-flower{
-    font-size:60px;
+    font-size:55px;
     animation:flower 2s infinite;
 }
 
 @keyframes flower{
-    50%{transform:rotate(8deg) scale(1.08)}
+    50%{
+        transform:rotate(8deg) scale(1.08);
+    }
 }
 
 .final-text{
     line-height:1.9;
     font-size:16px;
+}
+
+.forever{
+    text-align:center;
+    color:#ffd1ee;
+    font-weight:bold;
+    font-size:19px;
+}
+
+/* FLOATING */
+
+.float{
+    position:fixed;
+    bottom:-30px;
+    z-index:50;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh)
+        rotate(360deg);
+        opacity:0;
+    }
 }
 
 .confetti{
@@ -443,134 +597,70 @@ audio{
 
 @keyframes fall{
     to{
-        transform:translateY(110vh) rotate(720deg);
-        opacity:0;
-    }
-}
-
-/* FLOATING HEARTS */
-
-.float{
-    position:fixed;
-    bottom:-30px;
-    z-index:1;
-    pointer-events:none;
-    animation:floatUp linear forwards;
-}
-
-@keyframes floatUp{
-    to{
-        transform:translateY(-110vh) rotate(360deg);
+        transform:translateY(110vh)
+        rotate(720deg);
         opacity:0;
     }
 }
 
 @media(max-width:500px){
-    section{padding:25px 12px}
-    .card{padding:24px 15px}
-    h1{font-size:27px}
-    .photo-box{height:280px}
-    .cover{transform:scale(.9)}
-        }
-}
 
-/* இங்கே தான் புதிய CSS paste பண்ண வேண்டும் */
-
-.proposal-screen{
-    text-align:center;
-    padding:10px;
-}
-
-.proposal-animation{
-    font-size:65px;
-    margin:15px 0;
-    animation:proposalFloat 2s infinite ease-in-out;
-}
-
-.code-box{
-    margin-top:20px;
-}
-
-.code-error{
-    min-height:30px;
-    color:#ff9fcf;
-}
-
-.greeting-card{
-    display:none;
-    text-align:center;
-    animation:greetingOpen 1.2s ease forwards;
-}
-
-.greeting-card.show{
-    display:block;
-}
-
-@keyframes greetingOpen{
-    from{
-        opacity:0;
-        transform:scale(.7) translateY(30px);
+    section{
+        padding:25px 12px;
     }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
+
+    .card{
+        padding:24px 15px;
+    }
+
+    h1{
+        font-size:27px;
+    }
+
+    .photo-box{
+        height:280px;
+    }
+
+    .cover{
+        transform:scale(.9);
+    }
+
+    .intro-heart{
+        font-size:23px;
+    }
+
+    .proposal-animation{
+        font-size:48px;
+    }
+
+    .poem-line{
+        font-size:15px;
     }
 }
-
-.smoke{
-    font-size:30px;
-}
-
-.butterflies{
-    font-size:32px;
-    margin:15px 0;
-}
-
-.floating-hearts{
-    font-size:28px;
-    margin:12px 0;
-}
-
-.poem-line{
-    opacity:0;
-    transform:translateY(15px);
-    animation:poemShow 1s ease forwards;
-    margin-bottom:18px;
-    line-height:1.9;
-    font-size:17px;
-    color:#fae9ff;
-}
-
-@keyframes poemShow{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.poem-final{
-    color:#ffd1ee;
-    font-weight:bold;
-    font-size:20px;
-}
-
-
 </style>
 </head>
 
 <body>
 
-<!-- 1. FIRST BACKGROUND -->
+<!-- 1 HOME -->
 
 <section id="home">
+
 <div class="container">
+
 <div class="card">
 
-<div class="intro-heart">💜♾️🤍</div>
+<div class="intro-heart">
+💜♾️🤍
+</div>
 
-<div class="small">A Little Surprise For You</div>
+<div class="small">
+A Little Surprise For You
+</div>
 
-<h1>This Is For You 💜</h1>
+<h1>
+This Is For You 💜
+</h1>
 
 <div class="intro-text">
 Thangapulla ❤️
@@ -581,23 +671,35 @@ Touch Here 💜
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- 2. PASSWORD -->
+<!-- 2 PASSWORD -->
 
 <section id="password">
+
 <div class="container">
+
 <div class="card">
 
-<div class="lock">🔐💜</div>
+<div class="lock">
+🔐💜
+</div>
 
-<div class="small">Only For You</div>
+<div class="small">
+Only For You
+</div>
 
-<h1>Our Secret Date</h1>
+<h1>
+Our Secret Date
+</h1>
 
-<p>Enter the date that changed our lives ❤️</p>
+<p>
+Enter the date that changed our lives ❤️
+</p>
 
 <input
 id="pass"
@@ -613,27 +715,40 @@ Unlock ❤️
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- 3. ANNIVERSARY -->
+<!-- 3 ANNIVERSARY -->
 
 <section id="anniversary">
+
 <div class="container">
+
 <div class="card">
 
-<div class="intro-heart">💜🤍💕</div>
+<div class="intro-heart">
+💜🤍💕
+</div>
 
-<div class="small">Our Beautiful Beginning</div>
+<div class="small">
+Our Beautiful Beginning
+</div>
 
-<h1>Happy 1st Anniversary</h1>
+<h1>
+Happy 1st Anniversary
+</h1>
 
-<h2>Thangapulla ❤️</h2>
+<h2>
+Thangapulla ❤️
+</h2>
 
 <p style="line-height:1.8">
-One year of love, smiles, fights, hugs,
-memories and countless little moments. ♾️
+One year of love, smiles, fights,
+hugs, memories and countless
+little moments. ♾️
 </p>
 
 <button onclick="go('letter')">
@@ -641,13 +756,16 @@ Open My Letter 💌
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- 4. LETTER COVER -->
+<!-- 4 LETTER -->
 
 <section id="letter">
+
 <div class="container">
 
 <div class="card">
@@ -656,7 +774,9 @@ Open My Letter 💌
 A Letter From My Heart
 </div>
 
-<h1>💌 For You</h1>
+<h1>
+💌 For You
+</h1>
 
 <p class="cover-title">
 Touch the envelope ❤️
@@ -668,6 +788,7 @@ id="cover"
 onclick="openLetter()">
 
 <div class="cover-body"></div>
+
 <div class="cover-flap"></div>
 
 <div class="cover-heart">
@@ -676,57 +797,74 @@ onclick="openLetter()">
 
 </div>
 
+
 <div class="greeting" id="greeting">
 
-  <!-- PROPOSAL SCREEN -->
-  <div id="proposalScreen" class="proposal-screen">
+<!-- PROPOSAL -->
 
-    <div class="proposal-animation">
-      👩🏻‍❤️‍💋‍👨🏻
-    </div>
+<div
+id="proposalScreen"
+class="proposal-screen">
 
-    <h2>One Little Question 💜</h2>
+<div class="proposal-animation">
+👩🏻‍❤️‍💋‍👨🏻
+</div>
 
-    <p>
-      Will you always be my person? 🥹❤️
-    </p>
+<h2>
+One Little Question 💜
+</h2>
 
-    <div class="code-box">
-      <input
-        type="text"
-        id="loveCode"
-        placeholder="Enter the secret code ❤️"
-        autocomplete="off"
-      >
+<p>
+Will you always be my person? 🥹❤️
+</p>
 
-      <button onclick="checkLoveCode()">
-        Enter 💜
-      </button>
-    </div>
+<div class="code-box">
 
-    <p id="codeError" class="code-error"></p>
+<input
+type="text"
+id="loveCode"
+placeholder="Enter I LOVE YOU ❤️"
+autocomplete="off">
 
-  </div>
+<button onclick="checkLoveCode()">
+Enter 💜
+</button>
+
+</div>
+
+<p
+id="codeError"
+class="code-error">
+</p>
+
+</div>
 
 
-  <!-- GREETING CARD -->
-  <div id="greetingCard" class="greeting-card">
+<!-- GREETING CARD -->
 
-    <div class="smoke">✨ ✨ ✨</div>
+<div
+id="greetingCard"
+class="greeting-card">
 
-    <div class="butterflies">
-      🦋 💜 🦋 🤍 🦋
-    </div>
+<div class="smoke">
+✨ ✨ ✨
+</div>
 
-    <div class="floating-hearts">
-      ❤️ 💜 🤍 💕 💗
-    </div>
+<div class="butterflies">
+🦋 💜 🦋 🤍 🦋
+</div>
 
-    <h2>💌 My Thangapulla</h2>
+<div class="floating-hearts">
+❤️ 💜 🤍 💕 💗
+</div>
 
-    <div id="poem" class="poem"></div>
+<h2>
+💌 My Thangapulla
+</h2>
 
-  </div>
+<div id="poem" class="poem"></div>
+
+</div>
 
 </div>
 
@@ -740,28 +878,40 @@ Our Memories 📸
 </div>
 
 </div>
-</div>
+
 </section>
 
 
-<!-- 5. MEMORIES -->
+<!-- 5 MEMORIES -->
 
 <section id="memories">
+
 <div class="container">
+
 <div class="card">
 
-<div class="small">Our Little World</div>
+<div class="small">
+Our Little World
+</div>
 
-<h1>Our Memories 📸</h1>
+<h1>
+Our Memories 📸
+</h1>
 
 <div class="photo-box">
-<img id="photo" src="photo1.jpg">
+
+<img
+id="photo"
+src="photo1.jpg"
+alt="Our Memory">
+
 </div>
 
-<div class="count" id="count">
+<div
+class="count"
+id="count">
 1 / 10
 </div>
-
 
 <p style="color:#d9c1e6">
 Our memories keep rolling... ❤️
@@ -772,19 +922,27 @@ Our Song 🎵
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- 6. SONG -->
+<!-- 6 SONG -->
 
 <section id="song">
+
 <div class="container">
+
 <div class="card">
 
-<div class="small">A Song For Us</div>
+<div class="small">
+A Song For Us
+</div>
 
-<h1>🎁 Our Favorite Song</h1>
+<h1>
+🎁 Our Favorite Song
+</h1>
 
 <div
 class="gift"
@@ -796,10 +954,16 @@ onclick="playSong()">
 
 </div>
 
-<h2>Kanne Kanmaniye 🎵</h2>
+<h2>
+Kanne Kanmaniye 🎵
+</h2>
 
 <audio id="audio" controls>
-<source src="song.mp3" type="audio/mpeg">
+
+<source
+src="song.mp3"
+type="audio/mpeg">
+
 </audio>
 
 <p style="line-height:1.8">
@@ -811,51 +975,77 @@ Continue To Our Story 📖
 </button>
 
 </div>
+
 </div>
+
 </section>
-<!-- 6.5 STORY PASSWORD -->
+
+
+<!-- 7 STORY PASSWORD -->
 
 <section id="storyPassword">
-  <div class="container">
-    <div class="card">
 
-      <div class="lock">🔐💜</div>
-
-      <div class="small">Only For You</div>
-
-      <h1>Our Secret Story 💌</h1>
-
-      <p>Enter our secret date to continue ❤️</p>
-
-      <input
-        id="storyPass"
-        type="password"
-        inputmode="numeric"
-        maxlength="8"
-        placeholder="DDMMYYYY">
-
-      <div id="storyError" class="error"></div>
-
-      <button onclick="checkStoryPassword()">
-        Unlock Our Story ❤️
-      </button>
-
-    </div>
-  </div>
-</section>
-
-<!-- 7. STORY / SCRATCH -->
-
-<section id="story">
 <div class="container">
+
 <div class="card">
 
-<div class="small">One More Surprise</div>
+<div class="lock">
+🔐💜
+</div>
 
-<h1>Our Story 💌</h1>
+<div class="small">
+Only For You
+</div>
+
+<h1>
+Our Secret Story 💌
+</h1>
+
+<p>
+Enter our secret date to continue ❤️
+</p>
+
+<input
+id="storyPass"
+type="password"
+inputmode="numeric"
+maxlength="8"
+placeholder="DDMMYYYY">
+
+<div
+id="storyError"
+class="error">
+</div>
+
+<button onclick="checkStoryPassword()">
+Unlock Our Story ❤️
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 8 STORY -->
+
+<section id="story">
+
+<div class="container">
+
+<div class="card">
+
+<div class="small">
+One More Surprise
+</div>
+
+<h1>
+Our Story 💌
+</h1>
 
 <p style="line-height:1.8">
-Scratch / touch the card to reveal our special memory ❤️
+Touch the card to reveal our special memory ❤️
 </p>
 
 <div
@@ -863,7 +1053,9 @@ class="scratch"
 id="scratch"
 onclick="revealScratch()">
 
-<img src="story.jpg">
+<img
+src="story.jpg"
+alt="Our Story">
 
 <div class="scratch-cover">
 💜 Touch To Reveal 💜
@@ -876,14 +1068,18 @@ One Last Surprise ❤️
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- 8. FINAL -->
+<!-- 9 FINAL -->
 
 <section id="final">
+
 <div class="container">
+
 <div class="card">
 
 <div class="final-heart">
@@ -894,9 +1090,13 @@ One Last Surprise ❤️
 My Favorite Part
 </div>
 
-<h1>Happy 1st Anniversary</h1>
+<h1>
+Happy 1st Anniversary
+</h1>
 
-<h2>Thangapulla ❤️</h2>
+<h2>
+Thangapulla ❤️
+</h2>
 
 <div class="final-flower">
 💐
@@ -905,7 +1105,7 @@ My Favorite Part
 <div class="final-text">
 
 <p>
-Thank you for coming into my life. ❤️
+Thank you for coming to my life. ❤️
 </p>
 
 <p>
@@ -936,7 +1136,9 @@ Forever & Always 💜🤍
 </h2>
 
 </div>
+
 </div>
+
 </section>
 
 
@@ -945,142 +1147,100 @@ Forever & Always 💜🤍
 /* SCROLL */
 
 function go(id){
-    document.getElementById(id)
+
+    document
+    .getElementById(id)
     .scrollIntoView({
         behavior:"smooth"
     });
+
 }
 
 
-/* PASSWORD */
+/* FIRST PASSWORD */
 
 function checkPassword(){
 
     const value =
-    document.getElementById("pass").value.trim();
+    document
+    .getElementById("pass")
+    .value
+    .trim();
 
-    /*
-      IMPORTANT:
-      Inga un correct date podanum.
-      Example: 28082025
-    */
-
-    const correctPassword = "28082025";
+    const correctPassword =
+    "28082025";
 
     if(value === correctPassword){
 
-        document.getElementById("error")
+        document
+        .getElementById("error")
         .textContent="";
 
         go("anniversary");
 
     }else{
 
-        document.getElementById("error")
-        .textContent="😡 Wrong date! Try again ❤️";
+        document
+        .getElementById("error")
+        .textContent=
+        "😡 Wrong date! Try again ❤️";
 
-        document.getElementById("pass")
-        .animate([
+        document
+        .getElementById("pass")
+        .animate(
+        [
             {transform:"translateX(-10px)"},
             {transform:"translateX(10px)"},
             {transform:"translateX(-10px)"},
             {transform:"translateX(0)"}
-        ],400);
+        ],
+        400
+        );
+
     }
 }
 
+
+/* STORY PASSWORD */
+
 function checkStoryPassword(){
 
-  const value =
-    document.getElementById("storyPass").value.trim();
+    const value =
+    document
+    .getElementById("storyPass")
+    .value
+    .trim();
 
-  const correctStoryPassword = "29072025";
+    const correctStoryPassword =
+    "29072025";
 
-  if(value === correctStoryPassword){
+    if(value === correctStoryPassword){
 
-    document.getElementById("storyError")
-      .textContent = "";
+        document
+        .getElementById("storyError")
+        .textContent="";
 
-    go("story");
-
-  }else{
-
-    document.getElementById("storyError")
-      .textContent = "😌 Wrong date! Try again ❤️";
-
-    document.getElementById("storyPass").animate([
-      {transform:"translateX(-10px)"},
-      {transform:"translateX(10px)"},
-      {transform:"translateX(-10px)"},
-      {transform:"translateX(0)"}
-    ],400);
-
-  }
-}
-      }
-}
-
-
-/* LOVE CODE */
-
-function checkLoveCode(){
-
-    const code =
-        document.getElementById("loveCode")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const error =
-        document.getElementById("codeError");
-
-    if(code === "i love you"){
-
-        error.textContent = "";
-
-        // Hide proposal screen
-        document.getElementById("proposalScreen")
-            .style.display = "none";
-
-        // Open greeting card
-        document.getElementById("greetingCard")
-            .style.display = "block";
-
-        // Show poem
-        document.getElementById("poem").innerHTML = `
-           <p class="poem-line">
-என் வாழ்க்கையில் நீ வந்த நாள் முதல்,<br>
-என் உலகமே அழகாக மாறிவிட்டது. ❤️
-</p>
-
-<p class="poem-line">
-உன்னுடன் பேசும் ஒவ்வொரு நொடியும்<br>
-என் மனதுக்கு மிகவும் சிறப்பானது. 💜
-</p>
-
-<p class="poem-line">
-சந்தோஷமாக இருந்தாலும், கஷ்டமாக இருந்தாலும்,<br>
-என் கையை பிடித்து என்னுடன் இருப்பது நீதான். 🤍
-</p>
-
-<p class="poem-final">
-இன்று உன்னை தேர்ந்தெடுக்கிறேன். 💕<br>
-நாளையும் உன்னை தேர்ந்தெடுப்பேன். 💕<br>
-என்றென்றும் உன்னையே தேர்ந்தெடுப்பேன். ∞❤️
-</p> 
-        `;
+        go("story");
 
     }else{
 
-        error.textContent =
-            "🥹 Wrong code! Try again ❤️";
+        document
+        .getElementById("storyError")
+        .textContent=
+        "😌 Wrong date! Try again ❤️";
 
-        document.getElementById("loveCode").animate([
+        document
+        .getElementById("storyPass")
+        .animate(
+        [
             {transform:"translateX(-10px)"},
             {transform:"translateX(10px)"},
             {transform:"translateX(-10px)"},
             {transform:"translateX(0)"}
-        ],400);
+        ],
+        400
+        );
+
     }
 }
 
@@ -1088,7 +1248,6 @@ function checkLoveCode(){
 /* LETTER */
 
 function openLetter(){
-
 
     document
     .getElementById("cover")
@@ -1102,81 +1261,245 @@ function openLetter(){
 
     },700);
 
-    butterflies();
+}
+
+
+/* LOVE CODE */
+
+function checkLoveCode(){
+
+    const input =
+    document
+    .getElementById("loveCode");
+
+    const code =
+    input.value
+    .trim()
+    .toLowerCase();
+
+    const error =
+    document
+    .getElementById("codeError");
+
+    if(code === "i love you"){
+
+        error.textContent="";
+
+        document
+        .getElementById("proposalScreen")
+        .style.display="none";
+
+        const greeting =
+        document
+        .getElementById("greetingCard");
+
+        greeting.classList.add("show");
+
+        showPoem();
+
+        createLoveExplosion();
+
+    }else{
+
+        error.textContent=
+        "💜 Type I LOVE YOU ❤️";
+
+        input.animate(
+        [
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(10px)"},
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(0)"}
+        ],
+        400
+        );
+
+    }
+}
+
+
+/* TAMIL POEM */
+
+const poemLines = [
+
+`என் வாழ்க்கையில் நான் எடுத்த மிக அழகான முடிவு…
+உன்னை திருமணம் செய்ததுதான். 🥹💜`,
+
+`நீ என் வாழ்க்கையில் வந்த பிறகு,
+“கணவன்” என்ற உறவைத் தாண்டி,
+என் நண்பனாகவும், என் பலமாகவும்,
+என் சந்தோஷமாகவும் மாறிவிட்டாய். 🫂🤍`,
+
+`எத்தனை வருடங்கள் கடந்தாலும்,
+உன்னை முதன்முதலில் பார்த்த அந்த உணர்வும்,
+உன்னுடன் வாழ்க்கையை தொடங்கிய அந்த சந்தோஷமும்
+என் மனதில் என்றும் மாறாது. 🥰`,
+
+`வாழ்க்கையில் சந்தோஷம் வந்தாலும் சரி,
+கஷ்டம் வந்தாலும் சரி…
+என் கையை பிடித்துக்கொண்டு
+கடைசி வரை என்னுடன் இருப்பது நீயாகவே இருக்க வேண்டும். 💜`,
+
+`நம்முடைய வாழ்க்கையில் இன்னும் நிறைய கனவுகள்
+நனவாக வேண்டும்…
+இன்னும் நிறைய சிரிப்புகள், பயணங்கள்,
+அழகான நினைவுகள் நம்மை தேடி வர வேண்டும். 🥰`,
+
+`“நான் உன்னை காதலிக்கிறேன்” என்று சொல்வதைவிட,
+“என் வாழ்நாள் முழுவதும் உன்னுடன் இருக்க விரும்புகிறேன்”
+என்பதுதான் என் உண்மையான காதல். 💜`,
+
+`என் வாழ்க்கையின் அழகான பாதி நீ…
+என் இன்றும் நீ,
+என் நாளையும் நீ,
+என் எப்போதும் நீ தான். 🫶🏻♾️💜🤍`
+
+];
+
+
+function showPoem(){
+
+    const poem =
+    document.getElementById("poem");
+
+    poem.innerHTML="";
+
+    poemLines.forEach(
+        (line,index)=>{
+
+        const p =
+        document.createElement("p");
+
+        p.className=
+        index === poemLines.length-1
+        ? "poem-line poem-final"
+        : "poem-line";
+
+        p.textContent=line;
+
+        p.style.animationDelay=
+        (index * 1.1)+"s";
+
+        poem.appendChild(p);
+
+    });
+
+}
+
+
+/* LOVE EXPLOSION */
+
+function createLoveExplosion(){
+
+    const symbols=[
+        "🦋",
+        "💜",
+        "🤍",
+        "💕",
+        "❤️",
+        "✨"
+    ];
+
+    for(let i=0;i<35;i++){
+
+        setTimeout(()=>{
+
+            const item =
+            document.createElement("div");
+
+            item.className="float";
+
+            item.textContent=
+            symbols[
+                Math.floor(
+                    Math.random()*symbols.length
+                )
+            ];
+
+            item.style.left=
+            Math.random()*100+"%";
+
+            item.style.fontSize=
+            (16+Math.random()*20)+"px";
+
+            item.style.animationDuration=
+            (4+Math.random()*4)+"s";
+
+            document.body.appendChild(item);
+
+            setTimeout(()=>{
+                item.remove();
+            },9000);
+
+        },i*80);
+
+    }
+
 }
 
 
 /* PHOTOS */
 
 const photos=[
-"photo1.jpg",
-"photo2.jpg",
-"photo3.jpg",
-"photo4.jpg",
-"photo5.jpg",
-"photo6.jpg",
-"photo7.jpg",
-"photo8.jpg",
-"photo9.jpg",
-"photo10.jpg"
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg",
+    "photo6.jpg",
+    "photo7.jpg",
+    "photo8.jpg",
+    "photo9.jpg",
+    "photo10.jpg"
 ];
 
 let current=0;
 
 function showPhoto(){
 
-    const img=
+    const img =
     document.getElementById("photo");
 
     img.classList.remove("roll");
 
     void img.offsetWidth;
 
-    img.src=photos[current];
+    img.src =
+    photos[current];
 
     img.classList.add("roll");
 
-    document.getElementById("count")
-    .textContent=
+    document
+    .getElementById("count")
+    .textContent =
     (current+1)+" / "+photos.length;
-}
 
-function next(){
-
-    current++;
-
-    if(current>=photos.length)
-        current=0;
-
-    showPhoto();
-}
-
-function prev(){
-
-    current--;
-
-    if(current<0)
-        current=photos.length-1;
-
-    showPhoto();
 }
 
 
-/* AUTO PHOTO ROLL */
+/* AUTO PHOTO */
 
 setInterval(()=>{
 
-    const section=
+    const section =
     document.getElementById("memories");
 
-    const rect=
+    const rect =
     section.getBoundingClientRect();
 
     if(
         rect.top < window.innerHeight &&
         rect.bottom > 0
     ){
-        next();
+
+        current++;
+
+        if(current >= photos.length){
+            current=0;
+        }
+
+        showPhoto();
+
     }
 
 },4000);
@@ -1186,14 +1509,19 @@ setInterval(()=>{
 
 function playSong(){
 
-    const audio=
+    const audio =
     document.getElementById("audio");
 
     if(audio.paused){
+
         audio.play().catch(()=>{});
+
     }else{
+
         audio.pause();
+
     }
+
 }
 
 
@@ -1204,71 +1532,69 @@ function revealScratch(){
     document
     .getElementById("scratch")
     .classList.add("revealed");
+
 }
 
 
-/* BUTTERFLIES */
+/* FLOATING DECORATION */
 
-function butterflies(){
+setInterval(()=>{
 
-    const symbols=[
-        "🦋",
+    const d =
+    document.createElement("div");
+
+    d.className="float";
+
+    const items=[
         "💜",
         "🤍",
-        "💕"
+        "💕",
+        "✨",
+        "🌸"
     ];
 
-    for(let i=0;i<20;i++){
+    d.textContent =
+    items[
+        Math.floor(
+            Math.random()*items.length
+        )
+    ];
 
-        setTimeout(()=>{
+    d.style.left =
+    Math.random()*100+"%";
 
-            const b=
-            document.createElement("div");
+    d.style.fontSize =
+    (15+Math.random()*18)+"px";
 
-            b.className="float";
+    d.style.animationDuration =
+    (6+Math.random()*5)+"s";
 
-            b.textContent=
-            symbols[
-                Math.floor(
-                    Math.random()*symbols.length
-                )
-            ];
+    document.body.appendChild(d);
 
-            b.style.left=
-            Math.random()*100+"%";
+    setTimeout(()=>{
+        d.remove();
+    },12000);
 
-            b.style.fontSize=
-            (18+Math.random()*22)+"px";
-
-            b.style.animationDuration=
-            (4+Math.random()*4)+"s";
-
-            document.body.appendChild(b);
-
-            setTimeout(()=>{
-                b.remove();
-            },8000);
-
-        },i*120);
-
-    }
-}
+},1200);
 
 
 /* FINAL CONFETTI */
 
-const finalSection=
+const finalSection =
 document.getElementById("final");
 
 let confettiDone=false;
 
-window.addEventListener("scroll",()=>{
+window.addEventListener(
+"scroll",
+()=>{
 
-    const rect=
+    const rect =
     finalSection.getBoundingClientRect();
 
     if(
-        rect.top < window.innerHeight*.7 &&
+        rect.top <
+        window.innerHeight*.7 &&
         !confettiDone
     ){
 
@@ -1278,29 +1604,34 @@ window.addEventListener("scroll",()=>{
 
             setTimeout(()=>{
 
-                const c=
+                const c =
                 document.createElement("div");
 
                 c.className="confetti";
 
                 const items=[
-                    "💜","🤍","💕","✨","🌸","🦋"
+                    "💜",
+                    "🤍",
+                    "💕",
+                    "✨",
+                    "🌸",
+                    "🦋"
                 ];
 
-                c.textContent=
+                c.textContent =
                 items[
                     Math.floor(
                         Math.random()*items.length
                     )
                 ];
 
-                c.style.left=
+                c.style.left =
                 Math.random()*100+"%";
 
-                c.style.fontSize=
+                c.style.fontSize =
                 (12+Math.random()*18)+"px";
 
-                c.style.animationDuration=
+                c.style.animationDuration =
                 (3+Math.random()*4)+"s";
 
                 document.body.appendChild(c);
@@ -1310,47 +1641,12 @@ window.addEventListener("scroll",()=>{
                 },8000);
 
             },i*40);
+
         }
 
     }
 
 });
-
-
-/* FLOATING DECORATIONS */
-
-setInterval(()=>{
-
-    const d=
-    document.createElement("div");
-
-    d.className="float";
-
-    const items=[
-        "💜","🤍","💕","✨","🌸"
-    ];
-
-    d.textContent=
-    items[
-        Math.floor(Math.random()*items.length)
-    ];
-
-    d.style.left=
-    Math.random()*100+"%";
-
-    d.style.fontSize=
-    (15+Math.random()*18)+"px";
-
-    d.style.animationDuration=
-    (6+Math.random()*5)+"s";
-
-    document.body.appendChild(d);
-
-    setTimeout(()=>{
-        d.remove();
-    },12000);
-
-},900);
 
 </script>
 
