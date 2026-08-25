@@ -151,49 +151,6 @@ button:hover{
     font-size:16px;
 }
 
-/* PASSWORD */
-
-.lock{
-    font-size:25px;
-    animation:shake 2s infinite;
-}
-
-@keyframes shake{
-    0%,90%,100%{
-        transform:rotate(0);
-    }
-
-    92%{
-        transform:rotate(-7deg);
-    }
-
-    96%{
-        transform:rotate(7deg);
-    }
-}
-
-input{
-    width:min(310px,100%);
-    padding:14px;
-    border-radius:15px;
-    border:1px solid #d59aff;
-    background:rgba(255,255,255,.1);
-    color:#fff;
-    text-align:center;
-    font-size:18px;
-    outline:none;
-    margin:18px 0 8px;
-}
-
-input::placeholder{
-    color:#d9c4e4;
-}
-
-.error{
-    min-height:30px;
-    color:#ff9fcf;
-}
-
 /* COVER */
 
 .cover{
@@ -327,13 +284,90 @@ input::placeholder{
 @keyframes smokeMove{
     0%,100%{
         opacity:.35;
-        transform:translateY(0);
+        transform:translateY(0) scale(.95);
     }
 
     50%{
         opacity:1;
-        transform:translateY(-8px);
+        transform:translateY(-8px) scale(1.05);
     }
+}
+
+/* PHOTO SMOKE EFFECT */
+
+.photo-stage{
+    position:relative;
+    width:min(430px,100%);
+    margin:20px auto 12px;
+}
+
+.photo-smoke{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+    opacity:0;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.photo-smoke span{
+    position:absolute;
+    bottom:-30px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:rgba(235,220,245,.28);
+    filter:blur(9px);
+    animation:smokeRise 1.5s ease-out forwards;
+}
+
+.photo-smoke span:nth-child(1){
+    left:10%;
+}
+
+.photo-smoke span:nth-child(2){
+    left:25%;
+    animation-delay:.12s;
+}
+
+.photo-smoke span:nth-child(3){
+    left:42%;
+    animation-delay:.22s;
+}
+
+.photo-smoke span:nth-child(4){
+    left:60%;
+    animation-delay:.08s;
+}
+
+.photo-smoke span:nth-child(5){
+    left:78%;
+    animation-delay:.18s;
+}
+
+@keyframes smokeRise{
+    0%{
+        opacity:0;
+        transform:translateY(0) scale(.5);
+    }
+
+    30%{
+        opacity:.8;
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-300px) scale(2.4);
+    }
+}
+
+.photo-smoke.active{
+    opacity:1;
+}
+
+.photo-smoke.active span{
+    animation-name:smokeRise;
 }
 
 /* BUTTERFLIES */
@@ -395,7 +429,15 @@ input::placeholder{
     font-size:19px;
 }
 
-/* PHOTOS */
+/* MEMORIES */
+
+.memories-hidden{
+    display:none;
+}
+
+.memory-reveal{
+    margin:25px 0 10px;
+}
 
 .photo-box{
     width:min(430px,100%);
@@ -405,34 +447,83 @@ input::placeholder{
     border-radius:20px;
     border:1px solid rgba(255,255,255,.2);
     box-shadow:0 0 30px rgba(215,130,255,.35);
+    background:rgba(0,0,0,.25);
 }
 
 .photo-box img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
+    background:rgba(0,0,0,.25);
+    border-radius:20px;
 }
 
 .roll{
-    animation:photoRoll .8s ease;
+    animation:
+        photoSpring .9s cubic-bezier(.17,.89,.32,1.28);
 }
 
-@keyframes photoRoll{
+@keyframes photoSpring{
+    0%{
+        opacity:0;
+        transform:
+            translateX(140px)
+            rotate(9deg)
+            scale(.72);
+    }
+
+    45%{
+        opacity:.75;
+        transform:
+            translateX(-25px)
+            rotate(-3deg)
+            scale(1.04);
+    }
+
+    70%{
+        transform:
+            translateX(10px)
+            rotate(2deg)
+            scale(.98);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateX(0)
+            rotate(0)
+            scale(1);
+    }
+}
+
+.count{
+    color:#e4c9f0;
+}
+
+.memory-text{
+    color:#d9c1e6;
+    margin:12px 0 20px;
+}
+
+#memoriesContent{
+    display:none;
+}
+
+#memoriesContent.show{
+    display:block;
+    animation:memoryAppear 1s ease;
+}
+
+@keyframes memoryAppear{
     from{
         opacity:0;
-        transform:translateX(120px)
-        rotate(7deg)
-        scale(.85);
+        transform:translateY(35px) scale(.95);
     }
 
     to{
         opacity:1;
         transform:none;
     }
-}
-
-.count{
-    color:#e4c9f0;
 }
 
 /* SONG */
@@ -513,7 +604,8 @@ audio{
 .scratch img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
+    background:#100819;
 }
 
 .scratch-cover{
@@ -542,7 +634,7 @@ audio{
 /* FINAL */
 
 .final-heart{
-    font-size:58px;
+    font-size:38px;
     animation:heartBeat 1.2s infinite;
 }
 
@@ -618,7 +710,7 @@ audio{
     }
 
     .photo-box{
-        height:280px;
+        height:300px;
     }
 
     .cover{
@@ -626,7 +718,7 @@ audio{
     }
 
     .intro-heart{
-        font-size:23px;
+        font-size:18px;
     }
 
     .proposal-animation{
@@ -635,6 +727,10 @@ audio{
 
     .poem-line{
         font-size:15px;
+    }
+
+    .final-heart{
+        font-size:34px;
     }
 }
 </style>
@@ -666,7 +762,7 @@ This Is For You 💜
 Thangapulla ❤️
 </div>
 
-<button onclick="go('password')">
+<button onclick="go('anniversary')">
 Touch Here 💜
 </button>
 
@@ -677,51 +773,7 @@ Touch Here 💜
 </section>
 
 
-<!-- 2 PASSWORD -->
-
-<section id="password">
-
-<div class="container">
-
-<div class="card">
-
-<div class="lock">
-🔐💜
-</div>
-
-<div class="small">
-Only For You
-</div>
-
-<h1>
-Our Secret Date
-</h1>
-
-<p>
-Enter the date that changed our lives ❤️
-</p>
-
-<input
-id="pass"
-type="password"
-inputmode="numeric"
-maxlength="8"
-placeholder="DDMMYYYY">
-
-<div id="error" class="error"></div>
-
-<button onclick="checkPassword()">
-Unlock ❤️
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- 3 ANNIVERSARY -->
+<!-- 2 ANNIVERSARY -->
 
 <section id="anniversary">
 
@@ -762,7 +814,7 @@ Open My Letter 💌
 </section>
 
 
-<!-- 4 LETTER -->
+<!-- 3 LETTER -->
 
 <section id="letter">
 
@@ -788,7 +840,6 @@ id="cover"
 onclick="openLetter()">
 
 <div class="cover-body"></div>
-
 <div class="cover-flap"></div>
 
 <div class="cover-heart">
@@ -799,8 +850,6 @@ onclick="openLetter()">
 
 
 <div class="greeting" id="greeting">
-
-<!-- PROPOSAL -->
 
 <div
 id="proposalScreen"
@@ -840,8 +889,6 @@ class="code-error">
 </div>
 
 
-<!-- GREETING CARD -->
-
 <div
 id="greetingCard"
 class="greeting-card">
@@ -868,9 +915,6 @@ class="greeting-card">
 
 </div>
 
-
-</div>
-
 <button onclick="go('memories')">
 Our Memories 📸
 </button>
@@ -882,7 +926,7 @@ Our Memories 📸
 </section>
 
 
-<!-- 5 MEMORIES -->
+<!-- 4 MEMORIES -->
 
 <section id="memories">
 
@@ -898,6 +942,29 @@ Our Little World
 Our Memories 📸
 </h1>
 
+<p class="memory-text">
+Our beautiful memories are waiting for you... ❤️
+</p>
+
+<!-- PHOTO AREA HIDDEN INITIALLY -->
+
+<div
+id="memoriesContent">
+
+<div class="photo-stage">
+
+<div
+id="photoSmoke"
+class="photo-smoke">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
 <div class="photo-box">
 
 <img
@@ -907,13 +974,15 @@ alt="Our Memory">
 
 </div>
 
+</div>
+
 <div
 class="count"
 id="count">
 1 / 10
 </div>
 
-<p style="color:#d9c1e6">
+<p class="memory-text">
 Our memories keep rolling... ❤️
 </p>
 
@@ -923,12 +992,27 @@ Our Song 🎵
 
 </div>
 
+
+<!-- REVEAL BUTTON -->
+
+<div
+id="memoryReveal"
+class="memory-reveal">
+
+<button onclick="revealMemories()">
+Touch To Reveal Our Memories 💜
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 </section>
 
 
-<!-- 6 SONG -->
+<!-- 5 SONG -->
 
 <section id="song">
 
@@ -981,7 +1065,7 @@ Continue To Our Story 📖
 </section>
 
 
-<!-- 7 STORY PASSWORD -->
+<!-- 6 STORY PASSWORD -->
 
 <section id="storyPassword">
 
@@ -989,7 +1073,7 @@ Continue To Our Story 📖
 
 <div class="card">
 
-<div class="lock">
+<div class="lock" style="font-size:20px;">
 🔐💜
 </div>
 
@@ -1028,7 +1112,7 @@ Unlock Our Story ❤️
 </section>
 
 
-<!-- 8 STORY -->
+<!-- 7 STORY -->
 
 <section id="story">
 
@@ -1074,7 +1158,7 @@ One Last Surprise ❤️
 </section>
 
 
-<!-- 9 FINAL -->
+<!-- 8 FINAL -->
 
 <section id="final">
 
@@ -1151,97 +1235,10 @@ function go(id){
     document
     .getElementById(id)
     .scrollIntoView({
-        behavior:"smooth"
+        behavior:"smooth",
+        block:"start"
     });
 
-}
-
-
-/* FIRST PASSWORD */
-
-function checkPassword(){
-
-    const value =
-    document
-    .getElementById("pass")
-    .value
-    .trim();
-
-    const correctPassword =
-    "28082025";
-
-    if(value === correctPassword){
-
-        document
-        .getElementById("error")
-        .textContent="";
-
-        go("anniversary");
-
-    }else{
-
-        document
-        .getElementById("error")
-        .textContent=
-        "😡 Wrong date! Try again ❤️";
-
-        document
-        .getElementById("pass")
-        .animate(
-        [
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(10px)"},
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(0)"}
-        ],
-        400
-        );
-
-    }
-}
-
-
-/* STORY PASSWORD */
-
-function checkStoryPassword(){
-
-    const value =
-    document
-    .getElementById("storyPass")
-    .value
-    .trim();
-
-    const correctStoryPassword =
-    "29072025";
-
-    if(value === correctStoryPassword){
-
-        document
-        .getElementById("storyError")
-        .textContent="";
-
-        go("story");
-
-    }else{
-
-        document
-        .getElementById("storyError")
-        .textContent=
-        "😌 Wrong date! Try again ❤️";
-
-        document
-        .getElementById("storyPass")
-        .animate(
-        [
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(10px)"},
-            {transform:"translateX(-10px)"},
-            {transform:"translateX(0)"}
-        ],
-        400
-        );
-
-    }
 }
 
 
@@ -1438,6 +1435,34 @@ function createLoveExplosion(){
 }
 
 
+/* MEMORIES REVEAL */
+
+let memoriesStarted=false;
+
+function revealMemories(){
+
+    if(memoriesStarted){
+        return;
+    }
+
+    memoriesStarted=true;
+
+    document
+    .getElementById("memoryReveal")
+    .style.display="none";
+
+    const content =
+    document.getElementById("memoriesContent");
+
+    content.classList.add("show");
+
+    current=0;
+
+    showPhoto();
+
+}
+
+
 /* PHOTOS */
 
 const photos=[
@@ -1457,17 +1482,40 @@ let current=0;
 
 function showPhoto(){
 
+    if(!memoriesStarted){
+        return;
+    }
+
     const img =
     document.getElementById("photo");
+
+    const smoke =
+    document.getElementById("photoSmoke");
+
+    /* Remove old animation */
 
     img.classList.remove("roll");
 
     void img.offsetWidth;
 
+    /* Change image */
+
     img.src =
     photos[current];
 
+    /* Spring / rolling animation */
+
     img.classList.add("roll");
+
+    /* Smoke effect */
+
+    smoke.classList.remove("active");
+
+    void smoke.offsetWidth;
+
+    smoke.classList.add("active");
+
+    /* Counter */
 
     document
     .getElementById("count")
@@ -1477,9 +1525,13 @@ function showPhoto(){
 }
 
 
-/* AUTO PHOTO */
+/* AUTO PHOTO ROLL */
 
 setInterval(()=>{
+
+    if(!memoriesStarted){
+        return;
+    }
 
     const section =
     document.getElementById("memories");
@@ -1522,6 +1574,50 @@ function playSong(){
 
     }
 
+}
+
+
+/* STORY PASSWORD */
+
+function checkStoryPassword(){
+
+    const value =
+    document
+    .getElementById("storyPass")
+    .value
+    .trim();
+
+    const correctStoryPassword =
+    "29072025";
+
+    if(value === correctStoryPassword){
+
+        document
+        .getElementById("storyError")
+        .textContent="";
+
+        go("story");
+
+    }else{
+
+        document
+        .getElementById("storyError")
+        .textContent=
+        "😌 Wrong date! Try again ❤️";
+
+        document
+        .getElementById("storyPass")
+        .animate(
+        [
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(10px)"},
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(0)"}
+        ],
+        400
+        );
+
+    }
 }
 
 
