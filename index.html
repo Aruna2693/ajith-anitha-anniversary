@@ -371,8 +371,9 @@ audio{
 
 .story-img{
     width:100%;
-    max-height:480px;
-    object-fit:cover;
+    height:320px;
+    object-fit:contain;
+    object-position:center center;
     border-radius:20px;
     margin:15px 0;
 }
@@ -470,7 +471,90 @@ audio{
     h1{font-size:27px}
     .photo-box{height:280px}
     .cover{transform:scale(.9)}
+        }
 }
+
+/* இங்கே தான் புதிய CSS paste பண்ண வேண்டும் */
+
+.proposal-screen{
+    text-align:center;
+    padding:10px;
+}
+
+.proposal-animation{
+    font-size:65px;
+    margin:15px 0;
+    animation:proposalFloat 2s infinite ease-in-out;
+}
+
+.code-box{
+    margin-top:20px;
+}
+
+.code-error{
+    min-height:30px;
+    color:#ff9fcf;
+}
+
+.greeting-card{
+    display:none;
+    text-align:center;
+    animation:greetingOpen 1.2s ease forwards;
+}
+
+.greeting-card.show{
+    display:block;
+}
+
+@keyframes greetingOpen{
+    from{
+        opacity:0;
+        transform:scale(.7) translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.smoke{
+    font-size:30px;
+}
+
+.butterflies{
+    font-size:32px;
+    margin:15px 0;
+}
+
+.floating-hearts{
+    font-size:28px;
+    margin:12px 0;
+}
+
+.poem-line{
+    opacity:0;
+    transform:translateY(15px);
+    animation:poemShow 1s ease forwards;
+    margin-bottom:18px;
+    line-height:1.9;
+    font-size:17px;
+    color:#fae9ff;
+}
+
+@keyframes poemShow{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.poem-final{
+    color:#ffd1ee;
+    font-weight:bold;
+    font-size:20px;
+}
+
+
 </style>
 </head>
 
@@ -592,59 +676,60 @@ onclick="openLetter()">
 
 </div>
 
-<div
-class="greeting"
-id="greeting">
+<div class="greeting" id="greeting">
 
-<div class="proposal">
-👩🏻‍❤️‍👨🏻
+  <!-- PROPOSAL SCREEN -->
+  <div id="proposalScreen" class="proposal-screen">
+
+    <div class="proposal-animation">
+      👩🏻‍❤️‍💋‍👨🏻
+    </div>
+
+    <h2>One Little Question 💜</h2>
+
+    <p>
+      Will you always be my person? 🥹❤️
+    </p>
+
+    <div class="code-box">
+      <input
+        type="text"
+        id="loveCode"
+        placeholder="Enter the secret code ❤️"
+        autocomplete="off"
+      >
+
+      <button onclick="checkLoveCode()">
+        Enter 💜
+      </button>
+    </div>
+
+    <p id="codeError" class="code-error"></p>
+
+  </div>
+
+
+  <!-- GREETING CARD -->
+  <div id="greetingCard" class="greeting-card">
+
+    <div class="smoke">✨ ✨ ✨</div>
+
+    <div class="butterflies">
+      🦋 💜 🦋 🤍 🦋
+    </div>
+
+    <div class="floating-hearts">
+      ❤️ 💜 🤍 💕 💗
+    </div>
+
+    <h2>💌 My Thangapulla</h2>
+
+    <div id="poem" class="poem"></div>
+
+  </div>
+
 </div>
 
-<h1>My Thangapulla ❤️</h1>
-
-<div class="poem">
-
-<p>
-என் வாழ்க்கையில் நான் எடுத்த
-மிக அழகான முடிவு...
-உன்னை என் வாழ்க்கையில்
-தேர்ந்தெடுத்ததுதான். ❤️
-</p>
-
-<p>
-நீ என் வாழ்க்கையில் வந்த பிறகு,
-என் நாட்கள் இன்னும் அழகாகிவிட்டது.
-என் சந்தோஷத்திலும்,
-என் கஷ்டத்திலும்,
-என் பக்கத்தில் இருந்ததற்கு
-நன்றி. 🤍
-</p>
-
-<p>
-நீ என் காதல் மட்டும் இல்லை...
-என் நண்பன்,
-என் நம்பிக்கை,
-என் சந்தோஷம்,
-என் வீடு. 🫂❤️
-</p>
-
-<p>
-Thank you for coming into my life. 💜
-</p>
-
-<p>
-இன்று மட்டும் இல்லை...
-நாளையும்,
-நாளை மறுநாளும்,
-என் வாழ்நாள் முழுவதும்
-உன்னுடன் இருக்க விரும்புகிறேன். ♾️
-</p>
-
-<p class="forever">
-I choose you.<br>
-Today. Tomorrow.<br>
-Forever. ❤️
-</p>
 
 </div>
 
@@ -932,9 +1017,78 @@ function checkStoryPassword(){
 
   }
 }
+      }
+}
+
+
+/* LOVE CODE */
+
+function checkLoveCode(){
+
+    const code =
+        document.getElementById("loveCode")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const error =
+        document.getElementById("codeError");
+
+    if(code === "i love you"){
+
+        error.textContent = "";
+
+        // Hide proposal screen
+        document.getElementById("proposalScreen")
+            .style.display = "none";
+
+        // Open greeting card
+        document.getElementById("greetingCard")
+            .style.display = "block";
+
+        // Show poem
+        document.getElementById("poem").innerHTML = `
+           <p class="poem-line">
+என் வாழ்க்கையில் நீ வந்த நாள் முதல்,<br>
+என் உலகமே அழகாக மாறிவிட்டது. ❤️
+</p>
+
+<p class="poem-line">
+உன்னுடன் பேசும் ஒவ்வொரு நொடியும்<br>
+என் மனதுக்கு மிகவும் சிறப்பானது. 💜
+</p>
+
+<p class="poem-line">
+சந்தோஷமாக இருந்தாலும், கஷ்டமாக இருந்தாலும்,<br>
+என் கையை பிடித்து என்னுடன் இருப்பது நீதான். 🤍
+</p>
+
+<p class="poem-final">
+இன்று உன்னை தேர்ந்தெடுக்கிறேன். 💕<br>
+நாளையும் உன்னை தேர்ந்தெடுப்பேன். 💕<br>
+என்றென்றும் உன்னையே தேர்ந்தெடுப்பேன். ∞❤️
+</p> 
+        `;
+
+    }else{
+
+        error.textContent =
+            "🥹 Wrong code! Try again ❤️";
+
+        document.getElementById("loveCode").animate([
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(10px)"},
+            {transform:"translateX(-10px)"},
+            {transform:"translateX(0)"}
+        ],400);
+    }
+}
+
+
 /* LETTER */
 
 function openLetter(){
+
 
     document
     .getElementById("cover")
