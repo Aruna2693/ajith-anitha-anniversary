@@ -1,164 +1,2106 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Beautiful Love Story 💜🤍</title>
+<title>Happy 1st Anniversary 💜♾️🤍</title>
+
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
-  margin:0; min-height:100vh; font-family:Arial,"Noto Sans Tamil",sans-serif;
-  background:linear-gradient(135deg,#f8eaff,#fff,#eee5ff);
-  color:#4f3b5c;
+    font-family:Arial,"Noto Sans Tamil",sans-serif;
+    background:#09050f;
+    color:#fff;
+    overflow-x:hidden;
 }
-.container{max-width:720px;margin:auto;padding:22px 16px 40px}
+
+button,input{
+    font:inherit;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#background{
+    position:fixed;
+    inset:0;
+    z-index:-20;
+
+    background:
+        linear-gradient(
+            rgba(12,4,20,.48),
+            rgba(12,4,20,.78)
+        ),
+        url("background.jpg") center/cover no-repeat;
+}
+
+#background::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.12),
+            transparent 55%
+        );
+
+    animation:bgGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes bgGlow{
+    from{opacity:.35}
+    to{opacity:1}
+}
+
+/* =========================
+   DECOR
+========================= */
+
+#decor{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:100;
+}
+
+.float{
+    position:absolute;
+    bottom:-60px;
+    animation:floatUp linear forwards;
+    opacity:0;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:
+            translateY(0)
+            rotate(0)
+            scale(.6);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-115vh)
+            rotate(360deg)
+            scale(1.2);
+        opacity:0;
+    }
+}
+
+.sparkle{
+    position:absolute;
+    animation:sparkleBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes sparkleBlink{
+    0%,100%{
+        opacity:.1;
+        transform:scale(.4);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.4);
+        text-shadow:0 0 15px #fff;
+    }
+}
+
+/* =========================
+   SCREEN / CARD
+========================= */
+
+.screen{
+    min-height:100vh;
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px 15px;
+}
+
 .card{
-  background:rgba(255,255,255,.95); border-radius:26px; padding:24px 18px;
-  margin:14px 0; box-shadow:0 10px 30px rgba(75,45,90,.15);
+    width:min(760px,100%);
+
+    padding:32px 22px;
+
+    border-radius:30px;
+
+    background:rgba(20,7,30,.68);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 0 45px rgba(200,110,255,.2),
+        inset 0 0 30px rgba(255,255,255,.04);
+
+    animation:cardEnter 1s ease;
 }
-.hero{text-align:center}
-.heart{font-size:54px}
-h1{margin:8px 0;color:#633d78}
-h2{color:#6c477d}
-.message{font-size:17px;line-height:1.85;text-align:left}
-.btn{
-  display:block;width:100%;padding:15px;margin:12px 0;border:0;border-radius:15px;
-  background:#76518c;color:#fff;font-size:17px;font-weight:bold;cursor:pointer;
+
+@keyframes cardEnter{
+    from{
+        opacity:0;
+        transform:
+            translateY(35px)
+            scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
-.btn.secondary{background:#eadcf1;color:#5e3b70}
-.hidden{display:none}
-.music{
-  margin-top:18px;padding:16px;border-radius:18px;background:#f8f0fb;
-  border:1px solid #eadcf0;text-align:center
+
+/* =========================
+   OPENING
+========================= */
+
+.opening{
+    text-align:center;
 }
-.music-title{font-weight:bold;color:#603d72;margin-bottom:10px}
-audio{width:100%}
-.gallery{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px
+
+.big-heart{
+    font-size:78px;
+
+    animation:
+        heartbeat 1.3s infinite,
+        heartGlow 2s infinite alternate;
 }
-.gallery img{
-  width:100%;height:240px;object-fit:cover;border-radius:16px;
-  box-shadow:0 5px 15px rgba(0,0,0,.12);cursor:pointer
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    30%{transform:scale(1.18)}
+    50%{transform:scale(.95)}
+    70%{transform:scale(1.1)}
 }
-.lock{text-align:center}
-.lock-icon{font-size:55px}
-input{
-  width:100%;padding:15px;border:1px solid #d8c8e2;border-radius:13px;
-  font-size:18px;text-align:center;outline:none
+
+@keyframes heartGlow{
+    from{
+        filter:drop-shadow(0 0 5px #c77cff);
+    }
+
+    to{
+        filter:drop-shadow(0 0 30px #f1baff);
+    }
 }
-.error{color:#d44;min-height:22px;margin:10px 0;text-align:center}
-.first-photo{width:100%;border-radius:20px;margin-top:14px}
-.caption{text-align:center;font-weight:bold;font-size:18px;color:#633d78;margin-top:14px}
-.lightbox{
-  position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;
-  align-items:center;justify-content:center;padding:15px;z-index:10
+
+.small-text{
+    margin-top:18px;
+
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:#dcb8ed;
 }
-.lightbox img{max-width:100%;max-height:90vh;border-radius:12px}
-.close{position:fixed;top:15px;right:20px;color:#fff;font-size:35px;cursor:pointer}
-.small{text-align:center;color:#8b7b92;font-size:13px;margin-top:18px}
+
+h1{
+    margin-top:12px;
+
+    font-size:36px;
+
+    color:#f7ddff;
+
+    text-shadow:
+        0 0 15px #c679e8,
+        0 0 35px rgba(220,130,255,.4);
+}
+
+.subtitle{
+    margin-top:12px;
+    font-size:20px;
+}
+
+.start-btn{
+    margin-top:30px;
+
+    padding:16px 30px;
+
+    border:0;
+    border-radius:50px;
+
+    color:white;
+    font-weight:bold;
+    font-size:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a64ddd,
+            #63348a
+        );
+
+    box-shadow:
+        0 0 20px rgba(200,110,255,.45);
+
+    cursor:pointer;
+
+    animation:buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:0 0 15px rgba(200,110,255,.35);
+    }
+
+    50%{
+        transform:scale(1.05);
+        box-shadow:0 0 35px rgba(220,130,255,.8);
+    }
+}
+
+/* =========================
+   INPUT
+========================= */
+
+.password-input{
+    width:100%;
+    max-width:320px;
+
+    margin:22px auto 8px;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    text-align:center;
+
+    font-size:20px;
+
+    outline:none;
+}
+
+.password-input:focus{
+    border-color:#d18cff;
+    box-shadow:0 0 20px rgba(205,120,255,.25);
+}
+
+.password-input::placeholder{
+    color:#d7c7dc;
+}
+
+.error{
+    min-height:24px;
+    color:#ffafd5;
+}
+
+/* =========================
+   LOVE LETTER
+========================= */
+
+.love-card{
+    position:relative;
+    overflow:hidden;
+
+    transform-origin:top center;
+
+    animation:
+        letterUnfold 1.4s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes letterUnfold{
+    0%{
+        opacity:0;
+        transform:
+            perspective(900px)
+            rotateX(-70deg)
+            translateY(40px)
+            scale(.85);
+    }
+
+    60%{
+        opacity:1;
+        transform:
+            perspective(900px)
+            rotateX(8deg)
+            translateY(-5px)
+            scale(1.02);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            perspective(900px)
+            rotateX(0)
+            translateY(0)
+            scale(1);
+    }
+}
+
+.letter-heart{
+    font-size:55px;
+
+    animation:
+        heartbeat 1.3s infinite,
+        heartGlow 2s infinite alternate;
+}
+
+.letter-text{
+    margin-top:25px;
+
+    text-align:left;
+
+    font-size:17px;
+    line-height:1.9;
+
+    color:#f9eaff;
+}
+
+.letter-text p{
+    margin-bottom:18px;
+
+    opacity:0;
+
+    animation:textReveal .8s ease forwards;
+}
+
+.letter-text p:nth-child(1){animation-delay:.8s}
+.letter-text p:nth-child(2){animation-delay:1.2s}
+.letter-text p:nth-child(3){animation-delay:1.6s}
+.letter-text p:nth-child(4){animation-delay:2s}
+.letter-text p:nth-child(5){animation-delay:2.4s}
+
+@keyframes textReveal{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.highlight{
+    text-align:center;
+    color:#ffd2f0;
+    font-weight:bold;
+
+    text-shadow:0 0 12px rgba(255,170,230,.6);
+}
+
+.forever{
+    text-align:center;
+    color:#e5b7ff;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.love-decor{
+    position:fixed;
+    pointer-events:none;
+    z-index:80;
+    font-size:45px;
+
+    animation:
+        loveFloat 3s ease-in-out infinite;
+}
+
+.butterfly{
+    top:8%;
+    left:50%;
+    animation:
+        butterflyFly 5s ease-in-out infinite;
+}
+
+.heart-one{
+    top:20%;
+    left:7%;
+    animation:
+        heartBlink 1.4s infinite;
+}
+
+.heart-two{
+    right:7%;
+    top:65%;
+    animation:
+        heartBlink 1.4s infinite .7s;
+}
+
+.flower-one{
+    left:10%;
+    bottom:15%;
+    animation:
+        flowerFloat 3s infinite;
+}
+
+.flower-two{
+    right:10%;
+    top:18%;
+    animation:
+        flowerFloat 3s infinite 1s;
+}
+
+@keyframes butterflyFly{
+    0%{
+        transform:
+            translate(-80px,20px)
+            rotate(-15deg);
+    }
+
+    25%{
+        transform:
+            translate(40px,-30px)
+            rotate(10deg);
+    }
+
+    50%{
+        transform:
+            translate(100px,20px)
+            rotate(-5deg);
+    }
+
+    75%{
+        transform:
+            translate(30px,60px)
+            rotate(12deg);
+    }
+
+    100%{
+        transform:
+            translate(-80px,20px)
+            rotate(-15deg);
+    }
+}
+
+@keyframes heartBlink{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+        filter:drop-shadow(0 0 15px #ff9cdb);
+    }
+}
+
+@keyframes flowerFloat{
+    0%,100%{
+        transform:
+            translateY(15px)
+            rotate(-8deg);
+    }
+
+    50%{
+        transform:
+            translateY(-25px)
+            rotate(8deg);
+    }
+}
+
+.love-card .start-btn{
+    opacity:0;
+    animation:
+        memoriesReveal 1s ease forwards;
+    animation-delay:3s;
+}
+
+@keyframes memoriesReveal{
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================
+   MEMORIES
+========================= */
+
+.memory-stage{
+    position:relative;
+
+    width:100%;
+    max-width:520px;
+
+    height:470px;
+
+    margin:25px auto 15px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:rgba(0,0,0,.35);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    box-shadow:
+        0 0 35px rgba(210,130,255,.35);
+}
+
+.memory-stage img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.memory-change{
+    animation:
+        memorySlide .8s ease;
+}
+
+@keyframes memorySlide{
+    from{
+        opacity:0;
+        transform:
+            translateX(100px)
+            scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+.memory-heart{
+    position:absolute;
+
+    right:18px;
+    bottom:15px;
+
+    font-size:38px;
+
+    animation:
+        heartbeat 1.3s infinite;
+}
+
+.photo-count{
+    color:#ead1f7;
+    font-size:17px;
+}
+
+.memory-buttons{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-top:18px;
+}
+
+.memory-buttons button{
+    width:55px;
+    height:55px;
+
+    border:0;
+    border-radius:50%;
+
+    color:white;
+    font-size:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a64ddd,
+            #63348a
+        );
+
+    box-shadow:
+        0 0 20px rgba(200,110,255,.45);
+
+    cursor:pointer;
+}
+
+.swipe-hint{
+    margin-top:15px;
+    color:#d8bce9;
+    font-size:14px;
+}
+
+/* =========================
+   SNOW
+========================= */
+
+.snow{
+    position:fixed;
+
+    top:-30px;
+
+    z-index:60;
+
+    color:white;
+
+    pointer-events:none;
+
+    text-shadow:0 0 8px white;
+
+    animation:
+        snowFall linear forwards;
+}
+
+@keyframes snowFall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   SONG
+========================= */
+
+.gift{
+    font-size:18px;
+}
+
+.gift-box{
+    width:130px;
+    height:105px;
+
+    margin:25px auto;
+
+    position:relative;
+
+    cursor:pointer;
+
+    animation:
+        giftFloat 2s infinite ease-in-out;
+}
+
+@keyframes giftFloat{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.gift-body{
+    position:absolute;
+
+    left:10px;
+    right:10px;
+    bottom:0;
+
+    height:70px;
+
+    border-radius:8px;
+
+    background:
+        linear-gradient(
+            #ae56cf,
+            #71368d
+        );
+}
+
+.gift-lid{
+    position:absolute;
+
+    left:3px;
+    right:3px;
+    top:15px;
+
+    height:24px;
+
+    border-radius:7px;
+
+    background:#c46edc;
+}
+
+.gift-ribbon-v{
+    position:absolute;
+
+    width:18px;
+
+    top:0;
+    bottom:0;
+    left:56px;
+
+    background:#f5d1ff;
+}
+
+.gift-ribbon-h{
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:20px;
+
+    height:15px;
+
+    background:#f5d1ff;
+}
+
+.song-note{
+    font-size:42px;
+
+    animation:
+        musicFloat 1.5s infinite;
+}
+
+@keyframes musicFloat{
+    50%{
+        transform:
+            translateY(-10px)
+            rotate(8deg);
+    }
+}
+
+audio{
+    width:100%;
+    margin-top:15px;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story-image{
+    width:100%;
+
+    max-height:550px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 0 35px
+        rgba(220,160,255,.35);
+
+    animation:
+        storyGlow 3s
+        infinite alternate;
+}
+
+@keyframes storyGlow{
+    from{
+        box-shadow:
+            0 0 15px
+            rgba(220,160,255,.2);
+    }
+
+    to{
+        box-shadow:
+            0 0 40px
+            rgba(255,190,255,.7);
+    }
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final-card{
+    text-align:center;
+
+    animation:
+        finalAppear 1.5s ease;
+}
+
+@keyframes finalAppear{
+    from{
+        opacity:0;
+        transform:
+            scale(.7)
+            translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.final-butterfly{
+    font-size:65px;
+
+    animation:
+        butterflyFly 4s ease-in-out infinite;
+}
+
+.final-hearts{
+    margin-top:10px;
+
+    font-size:35px;
+
+    animation:
+        heartBlink 1.5s infinite;
+}
+
+.final-flower{
+    font-size:70px;
+    margin:20px 0;
+
+    animation:
+        flowerFloat 2s infinite;
+}
+
+.final-message{
+    font-size:17px;
+    line-height:1.8;
+}
+
+.final-message p{
+    margin-bottom:18px;
+}
+
+.final-message strong{
+    color:#ffd1ef;
+}
+
+.final-sign{
+    margin-top:25px;
+
+    font-size:19px;
+
+    color:#ffd8f5;
+}
+
+.confetti{
+    position:fixed;
+
+    top:-30px;
+
+    z-index:150;
+
+    pointer-events:none;
+
+    animation:
+        confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:520px){
+
+    .card{
+        padding:25px 16px;
+        border-radius:25px;
+    }
+
+    h1{
+        font-size:29px;
+    }
+
+    .big-heart{
+        font-size:65px;
+    }
+
+    .letter-text{
+        font-size:16px;
+        line-height:1.8;
+    }
+
+    .memory-stage{
+        height:360px;
+    }
+
+    .love-decor{
+        font-size:32px;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="container">
 
-  <section class="card hero">
-    <div class="heart">💜🤍</div>
-    <h1>Our Beautiful Love Story</h1>
+<div id="background"></div>
+<div id="decor"></div>
 
-    <div class="message">
-      <p>என் வாழ்க்கையில் நான் எடுத்த மிக அழகான முடிவு… உன்னை திருமணம் செய்ததுதான். 🥹❤️</p>
-      <p>நீ என் வாழ்க்கையில் வந்த பிறகு, “கணவன்” என்ற உறவைத் தாண்டி, என் நண்பனாகவும், என் பலமாகவும், என் சந்தோஷமாகவும் மாறிவிட்டாய். 🫂❤️</p>
-      <p>எத்தனை வருடங்கள் கடந்தாலும், உன்னை முதன்முதலில் பார்த்த அந்த உணர்வும், உன்னுடன் வாழ்க்கையை தொடங்கிய அந்த சந்தோஷமும் என் மனதில் என்றும் மாறாது. 🥰</p>
-      <p>வாழ்க்கையில் சந்தோஷம் வந்தாலும் சரி, கஷ்டம் வந்தாலும் சரி… என் கையை பிடித்துக்கொண்டு கடைசி வரை என்னுடன் இருப்பது நீயாகவே இருக்க வேண்டும். ❤️</p>
-      <p>நம்முடைய வாழ்க்கையில் இன்னும் நிறைய கனவுகள் நனவாக வேண்டும்… இன்னும் நிறைய சிரிப்புகள், பயணங்கள், அழகான நினைவுகள் நம்மை தேடி வர வேண்டும். 🥰</p>
-      <p>“நான் உன்னை காதலிக்கிறேன்” என்று சொல்வதைவிட, “என் வாழ்நாள் முழுவதும் உன்னுடன் இருக்க விரும்புகிறேன்” என்பதுதான் என் உண்மையான காதல். ❤️</p>
-      <p><b>என் வாழ்க்கையின் அழகான பாதி நீ… என் இன்றும் நீ, என் நாளையும் நீ, என் எப்போதும் நீ தான். 🫶🏻❤️</b></p>
+<!-- OPENING -->
+
+<section class="screen" id="opening">
+
+    <div class="card opening">
+
+        <div class="big-heart">
+            💜♾️🤍
+        </div>
+
+        <div class="small-text">
+            A little surprise for you
+        </div>
+
+        <h1>
+            Happy 1st Anniversary
+        </h1>
+
+        <div class="subtitle">
+            Thangapulla ❤️
+        </div>
+
+        <button
+            class="start-btn"
+            onclick="showMainLock()"
+        >
+            Touch Here ❤️
+        </button>
+
     </div>
 
-    <div class="music">
-      <div class="music-title">🎵 Our Favorite Song — Kanne Kanmaniye</div>
-      <audio controls>
-        <source src="favorite-song.mp3" type="audio/mpeg">
-      </audio>
+</section>
+
+
+<!-- MAIN PASSWORD -->
+
+<section
+    class="screen hidden"
+    id="mainLock"
+>
+
+    <div class="card opening">
+
+        <div class="big-heart">
+            🔐💜
+        </div>
+
+        <div class="small-text">
+            Only for you
+        </div>
+
+        <h1>
+            Our Secret Date
+        </h1>
+
+        <div class="subtitle">
+            Enter the date that changed our lives ❤️
+        </div>
+
+        <input
+            id="mainPassword"
+            class="password-input"
+            type="password"
+            inputmode="numeric"
+            maxlength="8"
+            placeholder="DDMMYYYY"
+        >
+
+        <div
+            class="error"
+            id="mainError"
+        ></div>
+
+        <button
+            class="start-btn"
+            onclick="unlockMain()"
+        >
+            Unlock Our Story ❤️
+        </button>
+
     </div>
-  </section>
 
-  <section class="card">
-    <button class="btn" onclick="showSection('photos')">📸 Click Here Photos</button>
-    <button class="btn secondary" onclick="showSection('firstMeet')">🔐 Our First Meet</button>
-  </section>
+</section>
 
-  <section class="card hidden" id="photos">
-    <h2>📸 Our Beautiful Memories</h2>
-    <div class="gallery">
-      <img src="1001096724.jpg" onclick="openImg(this.src)">
-      <img src="1001095608.jpg" onclick="openImg(this.src)">
-      <img src="1001095620.jpg" onclick="openImg(this.src)">
-      <img src="1001095625.jpg" onclick="openImg(this.src)">
-      <img src="1001095653.jpg" onclick="openImg(this.src)">
-      <img src="1001095659.jpg" onclick="openImg(this.src)">
-      <img src="1001095720.jpg" onclick="openImg(this.src)">
-      <img src="1001095732.jpg" onclick="openImg(this.src)">
-      <img src="1001095721.jpg" onclick="openImg(this.src)">
-      <img src="1001095657.jpg" onclick="openImg(this.src)">
-    </div>
-    <button class="btn secondary" onclick="hideSections()">← Back</button>
-  </section>
-
-  <section class="card hidden lock" id="firstMeet">
-    <div class="lock-icon">🔐</div>
-    <h2>Our First Meet 💜🤍</h2>
-    <p>Our special memory is locked.</p>
-    <input id="password" type="password" inputmode="numeric" maxlength="8"
-           placeholder="Enter 29072025"
-           onkeydown="if(event.key==='Enter')unlock()">
-    <button class="btn" onclick="unlock()">🔓 Unlock Our Memory</button>
-    <div class="error" id="error"></div>
-
-    <div id="unlocked" class="hidden">
-      <img class="first-photo" src="1001096724.jpg" alt="Our First Meet">
-      <div class="caption">Our beautiful moment 💜🤍</div>
-    </div>
-    <button class="btn secondary" onclick="hideSections()">← Back</button>
-  </section>
-
-  <div class="small">Made with love 💜🤍</div>
-</div>
-
-<div class="lightbox" id="lightbox" onclick="closeImg()">
-  <span class="close">×</span>
-  <img id="bigImg" src="" alt="Memory">
-</div>
 
 <script>
-function showSection(id){
-  document.getElementById("photos").classList.add("hidden");
-  document.getElementById("firstMeet").classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
-  window.scrollTo({top:document.getElementById(id).offsetTop-10,behavior:"smooth"});
+
+/* =========================
+   DECORATIONS
+========================= */
+
+const decorations = [
+    "💜",
+    "🤍",
+    "❤️",
+    "💗",
+    "🌸",
+    "🌹",
+    "✨",
+    "🦋"
+];
+
+function createDecoration(){
+
+    const d =
+        document.createElement("div");
+
+    d.className = "float";
+
+    d.textContent =
+        decorations[
+            Math.floor(
+                Math.random() *
+                decorations.length
+            )
+        ];
+
+    d.style.left =
+        Math.random() * 100 + "%";
+
+    d.style.fontSize =
+        (16 + Math.random() * 22) + "px";
+
+    d.style.animationDuration =
+        (6 + Math.random() * 6) + "s";
+
+    document
+        .getElementById("decor")
+        .appendChild(d);
+
+    setTimeout(()=>{
+        d.remove();
+    },13000);
 }
-function hideSections(){
-  document.getElementById("photos").classList.add("hidden");
-  document.getElementById("firstMeet").classList.add("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
+
+setInterval(
+    createDecoration,
+    700
+);
+
+
+/* SPARKLES */
+
+function createSparkle(){
+
+    const s =
+        document.createElement("div");
+
+    s.className = "sparkle";
+
+    s.textContent = "✦";
+
+    s.style.left =
+        Math.random() * 100 + "%";
+
+    s.style.top =
+        Math.random() * 100 + "%";
+
+    s.style.color =
+        Math.random() > .5
+        ? "#ffffff"
+        : "#ffd6ff";
+
+    document
+        .getElementById("decor")
+        .appendChild(s);
+
+    setTimeout(()=>{
+        s.remove();
+    },2200);
 }
-function unlock(){
-  const p=document.getElementById("password").value;
-  const e=document.getElementById("error");
-  if(p==="29072025"){
-    document.getElementById("unlocked").classList.remove("hidden");
-    e.textContent="";
-  }else{
-    e.textContent="Wrong password ❤️ Try again.";
-  }
+
+setInterval(
+    createSparkle,
+    600
+);
+
+
+/* =========================
+   SCREEN CONTROL
+========================= */
+
+function hideAll(){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.add("hidden");
+        });
 }
-function openImg(src){
-  document.getElementById("bigImg").src=src;
-  document.getElementById("lightbox").style.display="flex";
+
+function show(id){
+
+    hideAll();
+
+    const section =
+        document.getElementById(id);
+
+    if(section){
+        section.classList.remove("hidden");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
-function closeImg(){
-  document.getElementById("lightbox").style.display="none";
+
+
+/* =========================
+   OPENING
+========================= */
+
+function showMainLock(){
+
+    show("mainLock");
+
 }
+
+
+/* =========================
+   PASSWORD HASH
+========================= */
+
+async function sha256(value){
+
+    const data =
+        new TextEncoder()
+        .encode(value);
+
+    const buffer =
+        await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
+
+    return Array
+        .from(new Uint8Array(buffer))
+        .map(
+            b =>
+            b.toString(16)
+            .padStart(2,"0")
+        )
+        .join("");
+}
+
+
+/* =========================
+   MAIN PASSWORD
+========================= */
+
+async function unlockMain(){
+
+    const value =
+        document
+        .getElementById("mainPassword")
+        .value
+        .trim();
+
+    const correctHash =
+        "d3185f4365e61bfb5cc6b1652b1c5096d7d00e02abc259d911a9182666eb1a47";
+
+    const enteredHash =
+        await sha256(value);
+
+    if(
+        enteredHash === correctHash
+    ){
+
+        document
+            .getElementById("mainError")
+            .textContent = "";
+
+        openLoveLetter();
+
+    }else{
+
+        document
+            .getElementById("mainError")
+            .textContent =
+            "Wrong date... Try again ❤️";
+
+    }
+}
+
+
+/* =========================
+   LOVE LETTER
+========================= */
+
+function openLoveLetter(){
+
+    show("loveLetter");
+
+}
+
+
+/* Create Love Letter */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="loveLetter"
+    >
+
+        <div class="love-decor butterfly">
+            🦋
+        </div>
+
+        <div class="love-decor heart-one">
+            ❤️
+        </div>
+
+        <div class="love-decor heart-two">
+            💜
+        </div>
+
+        <div class="love-decor flower-one">
+            🌸
+        </div>
+
+        <div class="love-decor flower-two">
+            🌹
+        </div>
+
+        <div class="card love-card">
+
+            <div class="letter-heart">
+                💜🤍
+            </div>
+
+            <div class="small-text">
+                A Letter From My Heart
+            </div>
+
+            <h1>
+                To My Thangapulla ❤️
+            </h1>
+
+            <div class="letter-text">
+
+                <p>
+                    என் வாழ்க்கையில் நான் எடுத்த
+                    மிக அழகான முடிவு...
+                    உன்னை என் வாழ்க்கையில்
+                    தேர்ந்தெடுத்ததுதான். ❤️
+                </p>
+
+                <p>
+                    நீ என் வாழ்க்கையில் வந்த பிறகு,
+                    என் நாட்கள் இன்னும் அழகாகிவிட்டது.
+                    என் சந்தோஷத்திலும்,
+                    என் கஷ்டத்திலும்,
+                    என் பக்கத்தில் இருந்ததற்கு
+                    நன்றி. 🤍
+                </p>
+
+                <p>
+                    நீ என் காதல் மட்டும் இல்லை...
+                    என் நண்பன்,
+                    என் நம்பிக்கை,
+                    என் சந்தோஷம்,
+                    என் வீடு. 🫂❤️
+                </p>
+
+                <p class="highlight">
+                    Thank you for coming into my life. 💜
+                </p>
+
+                <p>
+                    இன்று மட்டும் இல்லை...
+                    நாளையும்,
+                    நாளை மறுநாளும்,
+                    என் வாழ்நாள் முழுவதும்
+                    உன்னுடன் இருக்க விரும்புகிறேன். ♾️
+                </p>
+
+                <p class="forever">
+                    I choose you.<br>
+                    Today. Tomorrow.<br>
+                    Forever. ❤️
+                </p>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="openMemories()"
+            >
+                Our Memories 📸
+            </button>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+/* =========================
+   MEMORIES
+========================= */
+
+const photos = [
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg",
+    "photo6.jpg",
+    "photo7.jpg",
+    "photo8.jpg",
+    "photo9.jpg",
+    "photo10.jpg"
+];
+
+let currentPhoto = 0;
+let autoSlide = null;
+
+function openMemories(){
+
+    show("memories");
+
+    currentPhoto = 0;
+
+    loadPhoto();
+
+    startSnow();
+
+    startAutoSlide();
+}
+
+
+/* Create Memories Section */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="memories"
+    >
+
+        <div class="card opening">
+
+            <div class="small-text">
+                Our Little World
+            </div>
+
+            <h1>
+                Our Memories 📸
+            </h1>
+
+            <div class="memory-stage">
+
+                <img
+                    id="memoryImage"
+                    src="photo1.jpg"
+                    alt="Our Memory"
+                >
+
+                <div class="memory-heart">
+                    ❤️
+                </div>
+
+            </div>
+
+            <div
+                id="photoCount"
+                class="photo-count"
+            >
+                1 / 10
+            </div>
+
+            <div class="memory-buttons">
+
+                <button
+                    onclick="previousPhoto()"
+                >
+                    ←
+                </button>
+
+                <button
+                    onclick="nextPhoto()"
+                >
+                    →
+                </button>
+
+            </div>
+
+            <p class="swipe-hint">
+                Swipe or tap → to see our memories ❤️
+            </p>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+/* LOAD PHOTO */
+
+function loadPhoto(){
+
+    const image =
+        document.getElementById(
+            "memoryImage"
+        );
+
+    image.classList.remove(
+        "memory-change"
+    );
+
+    void image.offsetWidth;
+
+    image.src =
+        photos[currentPhoto];
+
+    image.classList.add(
+        "memory-change"
+    );
+
+    document.getElementById(
+        "photoCount"
+    ).textContent =
+        (currentPhoto + 1) +
+        " / " +
+        photos.length;
+}
+
+
+/* NEXT */
+
+function nextPhoto(){
+
+    if(
+        currentPhoto <
+        photos.length - 1
+    ){
+
+        currentPhoto++;
+
+        loadPhoto();
+
+    }else{
+
+        stopAutoSlide();
+
+       openSong();
+
+    }
+}
+
+
+/* PREVIOUS */
+
+function previousPhoto(){
+
+    if(currentPhoto > 0){
+
+        currentPhoto--;
+
+        loadPhoto();
+
+    }
+
+}
+
+
+/* AUTO SLIDE */
+
+function startAutoSlide(){
+
+    stopAutoSlide();
+
+    autoSlide =
+        setInterval(()=>{
+
+            if(
+                !document
+                .getElementById("memories")
+                .classList
+                .contains("hidden")
+            ){
+
+                if(
+                    currentPhoto <
+                    photos.length - 1
+                ){
+
+                    currentPhoto++;
+
+                    loadPhoto();
+
+                }else{
+
+                    stopAutoSlide();
+
+                    openSong();
+
+             }
+
+            }
+
+        },4500);
+}
+
+function stopAutoSlide(){
+
+    if(autoSlide){
+
+        clearInterval(autoSlide);
+
+        autoSlide = null;
+
+    }
+
+}
+
+
+/* =========================
+   SWIPE
+========================= */
+
+let touchStartX = 0;
+
+document.addEventListener(
+    "touchstart",
+    e=>{
+        touchStartX =
+            e.changedTouches[0]
+            .screenX;
+    },
+    {passive:true}
+);
+
+document.addEventListener(
+    "touchend",
+    e=>{
+
+        const endX =
+            e.changedTouches[0]
+            .screenX;
+
+        const difference =
+            touchStartX - endX;
+
+        if(
+            Math.abs(difference) > 60
+        ){
+
+            if(difference > 0){
+
+                nextPhoto();
+
+            }else{
+
+                previousPhoto();
+
+            }
+
+        }
+
+    },
+    {passive:true}
+);
+
+
+/* =========================
+   SNOW
+========================= */
+
+let snowStarted = false;
+
+function startSnow(){
+
+    if(snowStarted){
+        return;
+    }
+
+    snowStarted = true;
+
+    setInterval(()=>{
+
+        const snow =
+            document.createElement("div");
+
+        snow.className = "snow";
+
+        snow.textContent =
+            Math.random() > .5
+            ? "❄"
+            : "❅";
+
+        snow.style.left =
+            Math.random() * 100 + "%";
+
+        snow.style.fontSize =
+            (10 + Math.random() * 18) + "px";
+
+        snow.style.animationDuration =
+            (5 + Math.random() * 6) + "s";
+
+        document.body.appendChild(
+            snow
+        );
+
+        setTimeout(()=>{
+            snow.remove();
+        },12000);
+
+    },250);
+}
+
+
+/* =========================
+   SONG
+========================= */
+
+function openSong(){
+
+    show("songSection");
+
+}
+
+
+/* Song Section */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="songSection"
+    >
+
+        <div class="card gift opening">
+
+            <div class="small-text">
+                A Song For Us
+            </div>
+
+            <h1>
+                🎁 Our Song
+            </h1>
+
+            <div
+                class="gift-box"
+                onclick="playSong()"
+            >
+
+                <div class="gift-lid"></div>
+                <div class="gift-body"></div>
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-ribbon-h"></div>
+
+            </div>
+
+            <div class="song-note">
+                🎵
+            </div>
+
+            <h2>
+                Kanne Kanmaniye
+            </h2>
+
+            <audio
+                id="song"
+                controls
+            >
+                <source
+                    src="song.mp3"
+                    type="audio/mpeg"
+                >
+            </audio>
+
+            <p style="margin-top:15px">
+                Tap the gift and listen to our song. ❤️
+            </p>
+
+            <button
+                class="start-btn"
+                onclick="openStoryLock()"
+            >
+                Continue to Our Story 📖
+            </button>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+function playSong(){
+
+    const song =
+        document.getElementById("song");
+
+    if(song.paused){
+
+        song.play().catch(()=>{});
+
+    }else{
+
+        song.pause();
+
+    }
+}
+
+
+/* =========================
+   STORY LOCK
+========================= */
+
+function openStoryLock(){
+
+    stopAutoSlide();
+
+    show("storyLock");
+
+}
+
+
+/* Story Lock */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="storyLock"
+    >
+
+        <div class="card opening">
+
+            <div class="big-heart">
+                🔐💜
+            </div>
+
+            <div class="small-text">
+                One More Little Secret
+            </div>
+
+            <h1>
+                Our Story 📖
+            </h1>
+
+            <div class="subtitle">
+                Enter our special date ❤️
+            </div>
+
+            <input
+                id="storyPassword"
+                class="password-input"
+                type="password"
+                inputmode="numeric"
+                maxlength="8"
+                placeholder="DDMMYYYY"
+            >
+
+            <div
+                class="error"
+                id="storyError"
+            ></div>
+
+            <button
+                class="start-btn"
+                onclick="unlockStory()"
+            >
+                Open Our Story 💌
+            </button>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+/* =========================
+   STORY
+========================= */
+
+async function unlockStory(){
+
+    const value =
+        document
+        .getElementById(
+            "storyPassword"
+        )
+        .value
+        .trim();
+
+    const correctHash =
+        "7e71dc0a9283b1993ad265b944954476d6ddbaffc650979f8c2e5c1d7e4dc3d6";
+
+    const enteredHash =
+        await sha256(value);
+
+    if(
+        enteredHash === correctHash
+    ){
+
+        document
+            .getElementById(
+                "storyError"
+            )
+            .textContent = "";
+
+        openStory();
+
+    }else{
+
+        document
+            .getElementById(
+                "storyError"
+            )
+            .textContent =
+            "Not this one... Try our special date ❤️";
+
+    }
+}
+
+
+function openStory(){
+
+    show("storySection");
+
+}
+
+
+/* Story Section */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="storySection"
+    >
+
+        <div class="card opening">
+
+            <div class="small-text">
+                Our Journey
+            </div>
+
+            <h1>
+                Our Story 💌
+            </h1>
+
+            <img
+                src="story.jpg"
+                class="story-image"
+                alt="Our Story"
+            >
+
+            <p
+                class="highlight"
+                style="margin-top:20px"
+            >
+                Every picture has a story.
+                Every memory has a feeling.
+                ❤️
+            </p>
+
+            <button
+                class="start-btn"
+                onclick="openFinal()"
+            >
+                One Last Surprise ❤️
+            </button>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+/* =========================
+   FINAL
+========================= */
+
+function openFinal(){
+
+    show("finalSection");
+
+    startConfetti();
+
+}
+
+
+/* Final Section */
+
+document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <section
+        class="screen hidden"
+        id="finalSection"
+    >
+
+        <div class="card final-card">
+
+            <div class="final-butterfly">
+                🦋
+            </div>
+
+            <div class="final-hearts">
+                💜 ❤️ 🤍
+            </div>
+
+            <div class="small-text">
+                And this is my favorite part...
+            </div>
+
+            <h1>
+                Happy 1st Anniversary
+            </h1>
+
+            <h2>
+                Thangapulla ❤️
+            </h2>
+
+            <div class="final-flower">
+                💐
+            </div>
+
+            <div class="final-message">
+
+                <p>
+                    Thank you for coming into my life. ❤️
+                </p>
+
+                <p>
+                    Thank you for every smile,
+                    every hug,
+                    every little fight,
+                    and every beautiful memory.
+                </p>
+
+                <p>
+                    You are not just a part of my life...
+                    <br>
+                    <strong>
+                        You are my favorite part of it.
+                    </strong>
+                </p>
+
+                <p class="forever">
+                    I choose you today.<br>
+                    I will choose you tomorrow.<br>
+                    I will choose you forever. ♾️❤️
+                </p>
+
+            </div>
+
+            <div class="final-sign">
+                Forever & Always 💜🤍
+            </div>
+
+        </div>
+
+    </section>
+    `
+);
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function startConfetti(){
+
+    const pieces = [
+        "💜",
+        "🤍",
+        "❤️",
+        "✨",
+        "🌸",
+        "🦋"
+    ];
+
+    for(
+        let i = 0;
+        i < 100;
+        i++
+    ){
+
+        setTimeout(()=>{
+
+            const c =
+                document.createElement(
+                    "div"
+                );
+
+            c.className =
+                "confetti";
+
+            c.textContent =
+                pieces[
+                    Math.floor(
+                        Math.random() *
+                        pieces.length
+                    )
+                ];
+
+            c.style.left =
+                Math.random() * 100 + "%";
+
+            c.style.fontSize =
+                (12 + Math.random() * 18)
+                + "px";
+
+            c.style.animationDuration =
+                (3 + Math.random() * 4)
+                + "s";
+
+            document.body.appendChild(c);
+
+            setTimeout(()=>{
+                c.remove();
+            },8000);
+
+        },i * 50);
+
+    }
+}
+
 </script>
+
 </body>
 </html>
