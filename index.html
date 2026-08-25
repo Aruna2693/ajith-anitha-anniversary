@@ -24,8 +24,6 @@ body{
     overflow-x:hidden;
 }
 
-/* BACKGROUND */
-
 body:before{
     content:"";
     position:fixed;
@@ -322,25 +320,19 @@ button:hover{
     animation:smokeRise 1.5s ease-out forwards;
 }
 
-.photo-smoke span:nth-child(1){
-    left:10%;
-}
-
+.photo-smoke span:nth-child(1){left:10%;}
 .photo-smoke span:nth-child(2){
     left:25%;
     animation-delay:.12s;
 }
-
 .photo-smoke span:nth-child(3){
     left:42%;
     animation-delay:.22s;
 }
-
 .photo-smoke span:nth-child(4){
     left:60%;
     animation-delay:.08s;
 }
-
 .photo-smoke span:nth-child(5){
     left:78%;
     animation-delay:.18s;
@@ -577,6 +569,31 @@ button:hover{
     z-index:3;
 }
 
+/* MUSIC PLAYER HIDDEN */
+
+.song-player{
+    display:none;
+    opacity:0;
+    transform:translateY(20px) scale(.9);
+}
+
+.song-player.show{
+    display:block;
+    animation:playerReveal .8s ease forwards;
+}
+
+@keyframes playerReveal{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
 audio{
     width:100%;
     margin:15px 0;
@@ -673,8 +690,9 @@ audio{
 
 @keyframes floatUp{
     to{
-        transform:translateY(-110vh)
-        rotate(360deg);
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
         opacity:0;
     }
 }
@@ -689,8 +707,9 @@ audio{
 
 @keyframes fall{
     to{
-        transform:translateY(110vh)
-        rotate(720deg);
+        transform:
+            translateY(110vh)
+            rotate(720deg);
         opacity:0;
     }
 }
@@ -799,8 +818,7 @@ Thangapulla ❤️
 
 <p style="line-height:1.8">
 One year of love, smiles, fights,
-hugs, memories and countless
-little moments. ♾️
+hugs, memories and countless little moments. ♾️
 </p>
 
 <button onclick="go('letter')">
@@ -840,6 +858,7 @@ id="cover"
 onclick="openLetter()">
 
 <div class="cover-body"></div>
+
 <div class="cover-flap"></div>
 
 <div class="cover-heart">
@@ -847,7 +866,6 @@ onclick="openLetter()">
 </div>
 
 </div>
-
 
 <div class="greeting" id="greeting">
 
@@ -887,7 +905,6 @@ class="code-error">
 </p>
 
 </div>
-
 
 <div
 id="greetingCard"
@@ -946,10 +963,7 @@ Our Memories 📸
 Our beautiful memories are waiting for you... ❤️
 </p>
 
-<!-- PHOTO AREA HIDDEN INITIALLY -->
-
-<div
-id="memoriesContent">
+<div id="memoriesContent">
 
 <div class="photo-stage">
 
@@ -992,9 +1006,6 @@ Our Song 🎵
 
 </div>
 
-
-<!-- REVEAL BUTTON -->
-
 <div
 id="memoryReveal"
 class="memory-reveal">
@@ -1028,9 +1039,11 @@ A Song For Us
 🎁 Our Favorite Song
 </h1>
 
+<!-- TOUCH THIS GIFT -->
+
 <div
 class="gift"
-onclick="playSong()">
+onclick="openSongPlayer()">
 
 <div class="gift-body"></div>
 <div class="gift-lid"></div>
@@ -1042,16 +1055,32 @@ onclick="playSong()">
 Kanne Kanmaniye 🎵
 </h2>
 
-<audio id="audio" controls>
+<!-- PLAYER HIDDEN UNTIL GIFT IS TOUCHED -->
+
+<div
+id="songPlayer"
+class="song-player">
+
+<audio
+id="audio"
+controls>
 
 <source
 src="song.mp3"
 type="audio/mpeg">
 
+Your browser does not support audio.
+
 </audio>
 
 <p style="line-height:1.8">
-Touch the gift to play our song. ❤️
+🎵 Our song is playing... ❤️
+</p>
+
+</div>
+
+<p style="line-height:1.8">
+Touch the gift to open our song. ❤️
 </p>
 
 <button onclick="go('storyPassword')">
@@ -1312,6 +1341,7 @@ function checkLoveCode(){
         );
 
     }
+
 }
 
 
@@ -1492,30 +1522,20 @@ function showPhoto(){
     const smoke =
     document.getElementById("photoSmoke");
 
-    /* Remove old animation */
-
     img.classList.remove("roll");
 
     void img.offsetWidth;
 
-    /* Change image */
-
     img.src =
     photos[current];
 
-    /* Spring / rolling animation */
-
     img.classList.add("roll");
-
-    /* Smoke effect */
 
     smoke.classList.remove("active");
 
     void smoke.offsetWidth;
 
     smoke.classList.add("active");
-
-    /* Counter */
 
     document
     .getElementById("count")
@@ -1559,18 +1579,51 @@ setInterval(()=>{
 
 /* SONG */
 
-function playSong(){
+/*
+    Gift box touch pannina mattum
+    music player visible aagum.
+    User touch event-la irukkarathunaala
+    browser audio autoplay-ai allow pannum.
+*/
+
+let songOpened=false;
+
+function openSongPlayer(){
+
+    const player =
+    document.getElementById("songPlayer");
 
     const audio =
     document.getElementById("audio");
 
-    if(audio.paused){
+    if(!songOpened){
 
-        audio.play().catch(()=>{});
+        songOpened=true;
+
+        player.classList.add("show");
+
+        audio.play().catch(()=>{
+
+            /*
+                Sila mobile browsers autoplay-ai
+                block pannina, player visible-ah
+                irukkum. User play button-ai
+                touch pannina song play aagum.
+            */
+
+        });
 
     }else{
 
-        audio.pause();
+        if(audio.paused){
+
+            audio.play().catch(()=>{});
+
+        }else{
+
+            audio.pause();
+
+        }
 
     }
 
@@ -1618,6 +1671,7 @@ function checkStoryPassword(){
         );
 
     }
+
 }
 
 
