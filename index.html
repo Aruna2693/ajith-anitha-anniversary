@@ -64,11 +64,6 @@ section{
     position:relative;
 }
 
-/* IMPORTANT:
-   All sections except HOME are hidden
-   until the previous button unlocks them.
-*/
-
 .locked-section{
     display:none !important;
 }
@@ -546,6 +541,7 @@ button:hover{
     border:1px solid rgba(255,255,255,.2);
     box-shadow:0 0 30px rgba(215,130,255,.35);
     background:rgba(0,0,0,.25);
+    position:relative;
 }
 
 .photo-box img{
@@ -562,27 +558,35 @@ button:hover{
 }
 
 @keyframes photoSpring{
+
     0%{
         opacity:0;
         transform:
-            translateX(140px)
-            rotate(9deg)
-            scale(.72);
+            translateX(150px)
+            rotate(12deg)
+            scale(.68);
+        filter:blur(7px);
+    }
+
+    25%{
+        opacity:.45;
     }
 
     45%{
-        opacity:.75;
+        opacity:.78;
         transform:
-            translateX(-25px)
-            rotate(-3deg)
-            scale(1.04);
+            translateX(-28px)
+            rotate(-4deg)
+            scale(1.05);
+        filter:blur(2px);
     }
 
     70%{
         transform:
-            translateX(10px)
+            translateX(12px)
             rotate(2deg)
             scale(.98);
+        filter:blur(0);
     }
 
     100%{
@@ -591,11 +595,14 @@ button:hover{
             translateX(0)
             rotate(0)
             scale(1);
+        filter:blur(0);
     }
 }
 
 .count{
     color:#e4c9f0;
+    font-size:14px;
+    letter-spacing:1px;
 }
 
 .memory-text{
@@ -875,6 +882,22 @@ audio{
 <body>
 
 <!-- =========================
+     BACKGROUND BGM
+========================= -->
+
+<audio
+    id="backgroundBgm"
+    loop
+    preload="auto"
+>
+    <source
+        src="bgm.mp3"
+        type="audio/mpeg"
+    >
+</audio>
+
+
+<!-- =========================
      1 HOME
 ========================= -->
 
@@ -882,7 +905,6 @@ audio{
 
 <div class="container">
 
-    <!-- FIRST LOCK -->
     <div class="card" id="homeLock">
 
         <div class="home-lock-icon">
@@ -927,7 +949,6 @@ audio{
     </div>
 
 
-    <!-- HOME AFTER FIRST LOCK -->
     <div
         class="card"
         id="homeContent"
@@ -1193,7 +1214,7 @@ audio{
             class="count"
             id="count"
         >
-            1 / 10
+            1 / 15
         </div>
 
         <p class="memory-text">
@@ -1491,6 +1512,171 @@ audio{
 <script>
 
 /* =========================
+   BACKGROUND BGM
+========================= */
+
+let bgmStarted = false;
+
+/*
+   Song play ஆகும்போது BGM stop ஆகும்.
+   Song pause/end ஆனதும் BGM மீண்டும் play ஆகும்.
+*/
+
+let bgmWasPlayingBeforeSong = false;
+
+
+function startBackgroundBgm(){
+
+    if(bgmStarted){
+        return;
+    }
+
+    const bgm =
+        document.getElementById("backgroundBgm");
+
+    if(!bgm){
+        return;
+    }
+
+    bgm.volume = 0.35;
+
+    bgm.play()
+        .then(()=>{
+
+            bgmStarted = true;
+
+        })
+        .catch(()=>{
+
+            /*
+                Browser autoplay block.
+                User interaction வந்ததும்
+                மீண்டும் try செய்யலாம்.
+            */
+
+        });
+
+}
+
+
+/* =========================
+   SONG / BGM CONTROL
+========================= */
+
+const backgroundBgm =
+    document.getElementById("backgroundBgm");
+
+const mainSong =
+    document.getElementById("audio");
+
+
+function stopBackgroundForSong(){
+
+    if(!backgroundBgm){
+        return;
+    }
+
+    /*
+       Song play ஆகும் முன்
+       BGM உண்மையில் ஓடிக்கொண்டிருந்ததா
+       என்பதை remember செய்கிறோம்.
+    */
+
+    bgmWasPlayingBeforeSong =
+        !backgroundBgm.paused;
+
+
+    if(!backgroundBgm.paused){
+
+        backgroundBgm.pause();
+
+    }
+
+}
+
+
+function resumeBackgroundAfterSong(){
+
+    if(!backgroundBgm){
+        return;
+    }
+
+    /*
+       Song play ஆகும் முன் BGM ஓடிக்கொண்டிருந்தால்
+       மட்டும் மீண்டும் start செய்கிறோம்.
+    */
+
+    if(bgmWasPlayingBeforeSong){
+
+        backgroundBgm.play()
+            .then(()=>{
+
+                bgmStarted = true;
+
+            })
+            .catch(()=>{});
+
+    }
+
+}
+
+
+/*
+   Main song PLAY
+*/
+
+if(mainSong){
+
+    mainSong.addEventListener(
+        "play",
+        ()=>{
+
+            stopBackgroundForSong();
+
+        }
+    );
+
+
+    /*
+       Song PAUSE
+    */
+
+    mainSong.addEventListener(
+        "pause",
+        ()=>{
+
+            /*
+               Song முடிந்த pause event-ஐ
+               ended event handle செய்யும்.
+            */
+
+            if(!mainSong.ended){
+
+                resumeBackgroundAfterSong();
+
+            }
+
+        }
+    );
+
+
+    /*
+       Song END
+    */
+
+    mainSong.addEventListener(
+        "ended",
+        ()=>{
+
+            resumeBackgroundAfterSong();
+
+        }
+    );
+
+}
+
+
+/* =========================
    FIRST HOME LOCK
    PASSWORD: 28082025
 ========================= */
@@ -1513,6 +1699,11 @@ function checkHomePassword(){
     if(value === correctHomePassword){
 
         error.textContent = "";
+
+
+        /* START BACKGROUND BGM */
+
+        startBackgroundBgm();
 
 
         /* Hide FIRST LOCK */
@@ -1603,8 +1794,6 @@ function go(id){
     }
 
 
-    /* Unlock ONLY the requested next section */
-
     section.classList.remove(
         "locked-section"
     );
@@ -1613,8 +1802,6 @@ function go(id){
         "section-unlocked"
     );
 
-
-    /* Scroll after unlock */
 
     setTimeout(()=>{
 
@@ -1884,6 +2071,7 @@ function revealMemories(){
 
 /* =========================
    PHOTOS
+   NOW 15 PHOTOS
 ========================= */
 
 const photos=[
@@ -1897,13 +2085,38 @@ const photos=[
     "photo7.jpg",
     "photo8.jpg",
     "photo9.jpg",
-    "photo10.jpg"
+    "photo10.jpg",
+    "photo11.jpg",
+    "photo12.jpg",
+    "photo13.jpg",
+    "photo14.jpg",
+    "photo15.jpg"
 
 ];
 
 
 let current=0;
 
+
+/* =========================
+   PHOTO PRELOAD
+========================= */
+
+photos.forEach(
+    src=>{
+
+        const image =
+            new Image();
+
+        image.src=src;
+
+    }
+);
+
+
+/* =========================
+   SHOW PHOTO
+========================= */
 
 function showPhoto(){
 
@@ -1920,18 +2133,40 @@ function showPhoto(){
         document.getElementById("photoSmoke");
 
 
+    /*
+       Old animation remove
+    */
+
     img.classList.remove("roll");
 
 
+    /*
+       Force browser reflow
+       so every new photo gets
+       the rolling animation again.
+    */
+
     void img.offsetWidth;
 
+
+    /*
+       Change photo
+    */
 
     img.src =
         photos[current];
 
 
+    /*
+       Rolling reveal
+    */
+
     img.classList.add("roll");
 
+
+    /*
+       Smoke restart
+    */
 
     smoke.classList.remove("active");
 
@@ -1941,6 +2176,10 @@ function showPhoto(){
 
     smoke.classList.add("active");
 
+
+    /*
+       Counter update
+    */
 
     document
         .getElementById("count")
@@ -1973,6 +2212,12 @@ setInterval(()=>{
         section.getBoundingClientRect();
 
 
+    /*
+       Memories section screen-la
+       visible-aa irundha mattum
+       photo change ஆகும்.
+    */
+
     if(
         rect.top < window.innerHeight &&
         rect.bottom > 0
@@ -1981,8 +2226,15 @@ setInterval(()=>{
         current++;
 
 
+        /*
+           Last photo முடிந்ததும்
+           first photo-க்கு திரும்பும்.
+        */
+
         if(current >= photos.length){
+
             current=0;
+
         }
 
 
@@ -2022,6 +2274,11 @@ function openSongPlayer(){
         player.classList.add("show");
 
 
+        /*
+           audio.play() trigger ஆனதும்
+           'play' event மூலம் BGM stop ஆகும்.
+        */
+
         audio.play().catch(()=>{});
 
 
@@ -2029,9 +2286,19 @@ function openSongPlayer(){
 
         if(audio.paused){
 
+            /*
+               Resume song.
+               play event -> BGM stop.
+            */
+
             audio.play().catch(()=>{});
 
         }else{
+
+            /*
+               Pause song.
+               pause event -> BGM resume.
+            */
 
             audio.pause();
 
@@ -2066,11 +2333,6 @@ function checkStoryPassword(){
             .getElementById("storyError")
             .textContent="";
 
-
-        /*
-           Story password correct.
-           Now unlock STORY.
-        */
 
         go("story");
 
