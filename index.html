@@ -328,6 +328,23 @@ button:hover{
     margin-top:20px;
 }
 
+.code-box input{
+    width:100%;
+    max-width:320px;
+    padding:14px 18px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.2);
+    outline:none;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    text-align:center;
+    font-size:16px;
+}
+
+.code-box input::placeholder{
+    color:#cdb7d8;
+}
+
 .code-error{
     min-height:30px;
     color:#ff9fcf;
@@ -359,6 +376,87 @@ button:hover{
 }
 
 /* =========================
+   VOICE
+========================= */
+
+.voice-status{
+    min-height:25px;
+    margin-top:12px;
+    color:#e8c9f5;
+    font-size:14px;
+}
+
+#voiceBtn{
+    margin:5px;
+    background:linear-gradient(
+        135deg,
+        #d65bba,
+        #74358f
+    );
+}
+
+#voiceBtn.listening{
+    animation:voicePulse 1s infinite;
+    box-shadow:
+        0 0 15px #ff75d1,
+        0 0 35px rgba(255,100,210,.7);
+}
+
+@keyframes voicePulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+/* =========================
+   LOVE YOU TOO
+========================= */
+
+.love-you-too{
+    display:none;
+    position:relative;
+    z-index:30;
+    margin:15px 0;
+}
+
+.love-you-too.show{
+    display:block;
+    animation:loveTooReveal 1s ease forwards;
+}
+
+@keyframes loveTooReveal{
+
+    0%{
+        opacity:0;
+        transform:scale(.3);
+        filter:blur(10px);
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(1.15);
+        filter:blur(0);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+.love-you-too h1{
+    font-size:30px;
+    color:#ffd8f5;
+    text-shadow:
+        0 0 10px #ff8bdd,
+        0 0 30px #c85be8;
+}
+
+/* =========================
    SMOKE
 ========================= */
 
@@ -369,6 +467,7 @@ button:hover{
 }
 
 @keyframes smokeMove{
+
     0%,100%{
         opacity:.35;
         transform:translateY(0) scale(.95);
@@ -377,6 +476,90 @@ button:hover{
     50%{
         opacity:1;
         transform:translateY(-8px) scale(1.05);
+    }
+}
+
+/* =========================
+   LOVE LETTER SMOKE
+========================= */
+
+.love-smoke{
+    position:absolute;
+    inset:-50px;
+    z-index:20;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:0;
+}
+
+.love-smoke.active{
+    opacity:1;
+}
+
+.love-smoke span{
+    position:absolute;
+    bottom:-60px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:rgba(245,225,255,.32);
+    filter:blur(13px);
+    animation:loveSmokeRise 2.2s ease-out forwards;
+}
+
+.love-smoke span:nth-child(1){
+    left:5%;
+}
+
+.love-smoke span:nth-child(2){
+    left:18%;
+    animation-delay:.12s;
+}
+
+.love-smoke span:nth-child(3){
+    left:32%;
+    animation-delay:.25s;
+}
+
+.love-smoke span:nth-child(4){
+    left:48%;
+    animation-delay:.08s;
+}
+
+.love-smoke span:nth-child(5){
+    left:63%;
+    animation-delay:.18s;
+}
+
+.love-smoke span:nth-child(6){
+    left:78%;
+    animation-delay:.32s;
+}
+
+.love-smoke span:nth-child(7){
+    left:90%;
+    animation-delay:.15s;
+}
+
+@keyframes loveSmokeRise{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(40px)
+            scale(.4);
+    }
+
+    25%{
+        opacity:.9;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(-360px)
+            translateX(30px)
+            scale(3);
     }
 }
 
@@ -436,6 +619,7 @@ button:hover{
 }
 
 @keyframes smokeRise{
+
     0%{
         opacity:0;
         transform:translateY(0) scale(.5);
@@ -470,6 +654,7 @@ button:hover{
 }
 
 @keyframes butterflyMove{
+
     50%{
         transform:translateY(-8px) rotate(2deg);
     }
@@ -486,6 +671,7 @@ button:hover{
 }
 
 @keyframes heartFloat{
+
     50%{
         transform:translateY(-6px);
     }
@@ -511,6 +697,7 @@ button:hover{
 }
 
 @keyframes poemShow{
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -620,6 +807,7 @@ button:hover{
 }
 
 @keyframes memoryAppear{
+
     from{
         opacity:0;
         transform:translateY(35px) scale(.95);
@@ -645,6 +833,7 @@ button:hover{
 }
 
 @keyframes giftFloat{
+
     50%{
         transform:translateY(-10px);
     }
@@ -696,6 +885,7 @@ button:hover{
 }
 
 @keyframes playerReveal{
+
     from{
         opacity:0;
         transform:translateY(20px) scale(.9);
@@ -778,6 +968,7 @@ audio{
 }
 
 @keyframes flower{
+
     50%{
         transform:rotate(8deg) scale(1.08);
     }
@@ -808,6 +999,7 @@ audio{
 }
 
 @keyframes floatUp{
+
     to{
         transform:
             translateY(-110vh)
@@ -825,6 +1017,7 @@ audio{
 }
 
 @keyframes fall{
+
     to{
         transform:
             translateY(110vh)
@@ -874,6 +1067,11 @@ audio{
     .final-heart{
         font-size:34px;
     }
+
+    .love-you-too h1{
+        font-size:26px;
+    }
+
 }
 
 </style>
@@ -1100,9 +1298,25 @@ audio{
                     autocomplete="off"
                 >
 
+                <br><br>
+
+                <button
+                    onclick="startLoveVoice()"
+                    id="voiceBtn"
+                >
+                    🎙️ Say "I Love You" ❤️
+                </button>
+
                 <button onclick="checkLoveCode()">
                     Enter 💜
                 </button>
+
+                <p
+                    id="voiceStatus"
+                    class="voice-status"
+                >
+                    🎙️ "I love you" nu sollunga...
+                </p>
 
             </div>
 
@@ -1118,6 +1332,42 @@ audio{
             id="greetingCard"
             class="greeting-card"
         >
+
+            <!-- LOVE SMOKE -->
+
+            <div
+                class="love-smoke"
+                id="loveSmoke"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <!-- LOVE YOU TOO -->
+
+            <div
+                id="loveYouToo"
+                class="love-you-too"
+            >
+
+                <h1>
+                    I Love You Too ❤️🥹
+                </h1>
+
+                <p>
+                    Forever my Thangapulla 💜♾️
+                </p>
+
+            </div>
+
 
             <div class="smoke">
                 ✨ ✨ ✨
@@ -1190,11 +1440,13 @@ audio{
                 id="photoSmoke"
                 class="photo-smoke"
             >
+
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
+
             </div>
 
             <div class="photo-box">
@@ -1517,11 +1769,6 @@ audio{
 
 let bgmStarted = false;
 
-/*
-   Song play ஆகும்போது BGM stop ஆகும்.
-   Song pause/end ஆனதும் BGM மீண்டும் play ஆகும்.
-*/
-
 let bgmWasPlayingBeforeSong = false;
 
 
@@ -1546,15 +1793,7 @@ function startBackgroundBgm(){
             bgmStarted = true;
 
         })
-        .catch(()=>{
-
-            /*
-                Browser autoplay block.
-                User interaction வந்ததும்
-                மீண்டும் try செய்யலாம்.
-            */
-
-        });
+        .catch(()=>{});
 
 }
 
@@ -1576,12 +1815,6 @@ function stopBackgroundForSong(){
         return;
     }
 
-    /*
-       Song play ஆகும் முன்
-       BGM உண்மையில் ஓடிக்கொண்டிருந்ததா
-       என்பதை remember செய்கிறோம்.
-    */
-
     bgmWasPlayingBeforeSong =
         !backgroundBgm.paused;
 
@@ -1601,11 +1834,6 @@ function resumeBackgroundAfterSong(){
         return;
     }
 
-    /*
-       Song play ஆகும் முன் BGM ஓடிக்கொண்டிருந்தால்
-       மட்டும் மீண்டும் start செய்கிறோம்.
-    */
-
     if(bgmWasPlayingBeforeSong){
 
         backgroundBgm.play()
@@ -1621,10 +1849,6 @@ function resumeBackgroundAfterSong(){
 }
 
 
-/*
-   Main song PLAY
-*/
-
 if(mainSong){
 
     mainSong.addEventListener(
@@ -1637,18 +1861,9 @@ if(mainSong){
     );
 
 
-    /*
-       Song PAUSE
-    */
-
     mainSong.addEventListener(
         "pause",
         ()=>{
-
-            /*
-               Song முடிந்த pause event-ஐ
-               ended event handle செய்யும்.
-            */
 
             if(!mainSong.ended){
 
@@ -1659,10 +1874,6 @@ if(mainSong){
         }
     );
 
-
-    /*
-       Song END
-    */
 
     mainSong.addEventListener(
         "ended",
@@ -1700,20 +1911,13 @@ function checkHomePassword(){
 
         error.textContent = "";
 
-
-        /* START BACKGROUND BGM */
-
         startBackgroundBgm();
 
-
-        /* Hide FIRST LOCK */
 
         document
             .getElementById("homeLock")
             .style.display = "none";
 
-
-        /* Show HOME */
 
         const homeContent =
             document.getElementById("homeContent");
@@ -1841,6 +2045,9 @@ function openLetter(){
    LOVE CODE
 ========================= */
 
+let loveAlreadyOpened = false;
+
+
 function checkLoveCode(){
 
     const input =
@@ -1857,12 +2064,18 @@ function checkLoveCode(){
 
     if(code === "i love you"){
 
-        error.textContent="";
+        if(loveAlreadyOpened){
+            return;
+        }
+
+        loveAlreadyOpened = true;
+
+        error.textContent = "";
 
 
         document
             .getElementById("proposalScreen")
-            .style.display="none";
+            .style.display = "none";
 
 
         const greeting =
@@ -1872,7 +2085,47 @@ function checkLoveCode(){
         greeting.classList.add("show");
 
 
-        showPoem();
+        /*
+           Smoke
+        */
+
+        const smoke =
+            document.getElementById("loveSmoke");
+
+        smoke.classList.remove("active");
+
+        void smoke.offsetWidth;
+
+        smoke.classList.add("active");
+
+
+        /*
+           I Love You Too
+        */
+
+        setTimeout(()=>{
+
+            const loveToo =
+                document.getElementById("loveYouToo");
+
+            loveToo.classList.add("show");
+
+
+            speakLoveYouToo();
+
+
+        },700);
+
+
+        /*
+           Poem
+        */
+
+        setTimeout(()=>{
+
+            showPoem();
+
+        },1500);
 
 
         createLoveExplosion();
@@ -1899,6 +2152,10 @@ function checkLoveCode(){
                 },
 
                 {
+                    transform:"translateX(10px)"
+                },
+
+                {
                     transform:"translateX(0)"
                 }
             ],
@@ -1906,6 +2163,331 @@ function checkLoveCode(){
         );
 
     }
+
+}
+
+
+/* =========================
+   VOICE RECOGNITION
+========================= */
+
+let recognition = null;
+
+let isListening = false;
+
+
+function startLoveVoice(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    const status =
+        document.getElementById("voiceStatus");
+
+    const voiceBtn =
+        document.getElementById("voiceBtn");
+
+
+    if(!SpeechRecognition){
+
+        status.textContent =
+            "😔 Voice recognition இந்த browser-ல் support இல்லை. Enter option use pannunga.";
+
+        return;
+
+    }
+
+
+    if(isListening){
+
+        if(recognition){
+
+            recognition.stop();
+
+        }
+
+        return;
+
+    }
+
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang = "en-IN";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = true;
+
+    recognition.maxAlternatives = 5;
+
+
+    isListening = true;
+
+
+    voiceBtn.classList.add(
+        "listening"
+    );
+
+    voiceBtn.textContent =
+        "🔴 Listening... சொல்லுங்க ❤️";
+
+
+    status.textContent =
+        '🎙️ "I love you" கேட்கிறேன்...';
+
+
+    recognition.onresult =
+        function(event){
+
+        let finalText = "";
+
+        let interimText = "";
+
+
+        for(
+            let i = event.resultIndex;
+            i < event.results.length;
+            i++
+        ){
+
+            const text =
+                event.results[i][0].transcript;
+
+
+            if(event.results[i].isFinal){
+
+                finalText += text;
+
+            }else{
+
+                interimText += text;
+
+            }
+
+        }
+
+
+        const spokenText =
+            (
+                finalText ||
+                interimText
+            )
+            .toLowerCase()
+            .trim();
+
+
+        status.textContent =
+            "🎙️ Heard: " + spokenText;
+
+
+        if(isLovePhrase(spokenText)){
+
+            document
+                .getElementById("loveCode")
+                .value = "I LOVE YOU";
+
+
+            status.textContent =
+                "❤️ I LOVE YOU கேட்டுட்டேன்...";
+
+
+            setTimeout(()=>{
+
+                checkLoveCode();
+
+            },500);
+
+        }
+
+    };
+
+
+    recognition.onend =
+        function(){
+
+        isListening = false;
+
+
+        voiceBtn.classList.remove(
+            "listening"
+        );
+
+
+        voiceBtn.textContent =
+            '🎙️ Say "I Love You" ❤️';
+
+
+        if(!loveAlreadyOpened){
+
+            const currentStatus =
+                document
+                .getElementById("voiceStatus")
+                .textContent;
+
+
+            if(
+                currentStatus.includes(
+                    "கேட்கிறேன்"
+                )
+            ){
+
+                status.textContent =
+                    '🥹 "I love you" nu konjam clear-aa sollunga...';
+
+            }
+
+        }
+
+    };
+
+
+    recognition.onerror =
+        function(event){
+
+        isListening = false;
+
+
+        voiceBtn.classList.remove(
+            "listening"
+        );
+
+
+        voiceBtn.textContent =
+            '🎙️ Say "I Love You" ❤️';
+
+
+        if(event.error === "not-allowed"){
+
+            status.textContent =
+                "🎙️ Microphone permission Allow pannunga ❤️";
+
+        }else{
+
+            status.textContent =
+                '😌 Voice clear-aa kekkala. "I love you" nu sollunga ❤️';
+
+        }
+
+    };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(error){
+
+        isListening = false;
+
+        voiceBtn.classList.remove(
+            "listening"
+        );
+
+        voiceBtn.textContent =
+            '🎙️ Say "I Love You" ❤️';
+
+    }
+
+}
+
+
+/* =========================
+   CHECK LOVE PHRASE
+========================= */
+
+function isLovePhrase(text){
+
+    const cleaned =
+        text
+        .replace(/[.,!?]/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+
+
+    const phrases = [
+
+        "i love you",
+
+        "i love u",
+
+        "i luv you",
+
+        "i luv u"
+
+    ];
+
+
+    if(phrases.includes(cleaned)){
+
+        return true;
+
+    }
+
+
+    /*
+       Extra words recognition
+    */
+
+    if(
+        cleaned.includes("i love you") ||
+        cleaned.includes("i love u") ||
+        cleaned.includes("i luv you") ||
+        cleaned.includes("i luv u")
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================
+   LOVE YOU TOO VOICE
+========================= */
+
+function speakLoveYouToo(){
+
+    if(!("speechSynthesis" in window)){
+
+        return;
+
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    const message =
+        new SpeechSynthesisUtterance(
+            "I love you too"
+        );
+
+
+    message.lang = "en-IN";
+
+    message.rate = 0.85;
+
+    message.pitch = 1.15;
+
+    message.volume = 1;
+
+
+    setTimeout(()=>{
+
+        window.speechSynthesis.speak(
+            message
+        );
+
+    },300);
 
 }
 
@@ -1938,7 +2520,7 @@ function showPoem(){
     const poem =
         document.getElementById("poem");
 
-    poem.innerHTML="";
+    poem.innerHTML = "";
 
 
     poemLines.forEach(
@@ -1954,11 +2536,11 @@ function showPoem(){
             : "poem-line";
 
 
-        p.textContent=line;
+        p.textContent = line;
 
 
         p.style.animationDelay =
-            (index * 1.1)+"s";
+            (index * 1.1) + "s";
 
 
         poem.appendChild(p);
@@ -1992,13 +2574,13 @@ function createLoveExplosion(){
                 document.createElement("div");
 
 
-            item.className="float";
+            item.className = "float";
 
 
             item.textContent =
                 symbols[
                     Math.floor(
-                        Math.random()*
+                        Math.random() *
                         symbols.length
                     )
                 ];
@@ -2020,7 +2602,9 @@ function createLoveExplosion(){
 
 
             setTimeout(()=>{
+
                 item.remove();
+
             },9000);
 
         },i*80);
@@ -2034,7 +2618,7 @@ function createLoveExplosion(){
    MEMORIES REVEAL
 ========================= */
 
-let memoriesStarted=false;
+let memoriesStarted = false;
 
 
 function revealMemories(){
@@ -2044,12 +2628,12 @@ function revealMemories(){
     }
 
 
-    memoriesStarted=true;
+    memoriesStarted = true;
 
 
     document
         .getElementById("memoryReveal")
-        .style.display="none";
+        .style.display = "none";
 
 
     const content =
@@ -2061,7 +2645,7 @@ function revealMemories(){
     content.classList.add("show");
 
 
-    current=0;
+    current = 0;
 
 
     showPhoto();
@@ -2071,7 +2655,6 @@ function revealMemories(){
 
 /* =========================
    PHOTOS
-   NOW 15 PHOTOS
 ========================= */
 
 const photos=[
@@ -2095,7 +2678,7 @@ const photos=[
 ];
 
 
-let current=0;
+let current = 0;
 
 
 /* =========================
@@ -2108,7 +2691,7 @@ photos.forEach(
         const image =
             new Image();
 
-        image.src=src;
+        image.src = src;
 
     }
 );
@@ -2133,40 +2716,18 @@ function showPhoto(){
         document.getElementById("photoSmoke");
 
 
-    /*
-       Old animation remove
-    */
-
     img.classList.remove("roll");
 
 
-    /*
-       Force browser reflow
-       so every new photo gets
-       the rolling animation again.
-    */
-
     void img.offsetWidth;
 
-
-    /*
-       Change photo
-    */
 
     img.src =
         photos[current];
 
 
-    /*
-       Rolling reveal
-    */
-
     img.classList.add("roll");
 
-
-    /*
-       Smoke restart
-    */
 
     smoke.classList.remove("active");
 
@@ -2177,15 +2738,11 @@ function showPhoto(){
     smoke.classList.add("active");
 
 
-    /*
-       Counter update
-    */
-
     document
         .getElementById("count")
         .textContent =
-        (current+1)+
-        " / "+
+        (current+1) +
+        " / " +
         photos.length;
 
 }
@@ -2212,12 +2769,6 @@ setInterval(()=>{
         section.getBoundingClientRect();
 
 
-    /*
-       Memories section screen-la
-       visible-aa irundha mattum
-       photo change ஆகும்.
-    */
-
     if(
         rect.top < window.innerHeight &&
         rect.bottom > 0
@@ -2226,14 +2777,9 @@ setInterval(()=>{
         current++;
 
 
-        /*
-           Last photo முடிந்ததும்
-           first photo-க்கு திரும்பும்.
-        */
-
         if(current >= photos.length){
 
-            current=0;
+            current = 0;
 
         }
 
@@ -2249,7 +2795,7 @@ setInterval(()=>{
    SONG
 ========================= */
 
-let songOpened=false;
+let songOpened = false;
 
 
 function openSongPlayer(){
@@ -2268,16 +2814,11 @@ function openSongPlayer(){
 
     if(!songOpened){
 
-        songOpened=true;
+        songOpened = true;
 
 
         player.classList.add("show");
 
-
-        /*
-           audio.play() trigger ஆனதும்
-           'play' event மூலம் BGM stop ஆகும்.
-        */
 
         audio.play().catch(()=>{});
 
@@ -2286,19 +2827,9 @@ function openSongPlayer(){
 
         if(audio.paused){
 
-            /*
-               Resume song.
-               play event -> BGM stop.
-            */
-
             audio.play().catch(()=>{});
 
         }else{
-
-            /*
-               Pause song.
-               pause event -> BGM resume.
-            */
 
             audio.pause();
 
@@ -2331,7 +2862,7 @@ function checkStoryPassword(){
 
         document
             .getElementById("storyError")
-            .textContent="";
+            .textContent = "";
 
 
         go("story");
@@ -2396,7 +2927,7 @@ setInterval(()=>{
         document.createElement("div");
 
 
-    d.className="float";
+    d.className = "float";
 
 
     const items=[
@@ -2432,7 +2963,9 @@ setInterval(()=>{
 
 
     setTimeout(()=>{
+
         d.remove();
+
     },12000);
 
 },1200);
@@ -2446,7 +2979,7 @@ const finalSection =
     document.getElementById("final");
 
 
-let confettiDone=false;
+let confettiDone = false;
 
 
 window.addEventListener(
@@ -2463,7 +2996,7 @@ window.addEventListener(
         !confettiDone
     ){
 
-        confettiDone=true;
+        confettiDone = true;
 
 
         for(let i=0;i<80;i++){
@@ -2474,7 +3007,7 @@ window.addEventListener(
                     document.createElement("div");
 
 
-                c.className="confetti";
+                c.className = "confetti";
 
 
                 const items=[
@@ -2512,7 +3045,9 @@ window.addEventListener(
 
 
                 setTimeout(()=>{
+
                     c.remove();
+
                 },8000);
 
             },i*40);
